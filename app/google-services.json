@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "374457952852",
+    "project_id": "chore-champion-android",
+    "storage_bucket": "chore-champion-android.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374457952852:android:4523da19c033c5ba62dbc1",
+        "android_client_info": {
+          "package_name": "com.faloshey.chorechampion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALiA4URODr1OEDwv7Yk_5XS1fRO-72coc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
