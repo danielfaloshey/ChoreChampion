@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">ChoreChampion</string>
+
+    <!-- Button Strings -->
+    <string name="login_button">Log In</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="create_button">Create</string>
+    <string name="edit_button">Edit</string>
+    <string name="add_button">Add</string>
+    <string name="onward_button">Onward!</string>
+    <string name="done_button">Done</string>
+    <string name="save_button">Save</string>
+    <string name="back_button">Back</string>
+
+    <!-- Login/Signup -->
+    <string name="login_title">-- Log In --</string>
+    <string name="email_msg">Enter email here</string>
+    <string name="password_msg">Enter password here</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_option">-- Log In With --</string>
+    <string name="google_login_desc">Google login</string>
+
+    <string name="create_title">-- Create Account --</string>
+    <string name="create_email">Enter your email address</string>
+    <string name="create_password">Create a password (min 6 characters)</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_pin">Create security PIN (4 digit)</string>
+    <string name="signup_option">-- Sign Up With --</string>
+    <string name="google_signup_desc">Google signup</string>
+
+    <!-- Image Descriptions -->
+    <string name="logo_desc">Logo</string>
 </resources>
