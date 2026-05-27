@@ -11,6 +11,15 @@
     <string name="done_button">Done</string>
     <string name="save_button">Save</string>
     <string name="back_button">Back</string>
+    <string name="add_child">+ Add child account</string>
+    <string name="edit_child">- Edit child account</string>
+
+    <!-- Nav Bar Buttons -->
+    <string name="inventory_nav">Inventory</string>
+    <string name="quests_nav">Quests</string>
+    <string name="home_nav">Home</string>
+    <string name="shop_nav">Shop</string>
+    <string name="settings_nav">Settings</string>
 
     <!-- Login/Signup -->
     <string name="login_title">-- Log In --</string>
@@ -28,6 +37,18 @@
     <string name="signup_option">-- Sign Up With --</string>
     <string name="google_signup_desc">Google signup</string>
 
+    <!-- Parent Home -->
+    <string name="champions_hall_title">Champions Hall</string>
+    <string name="welcome_text">Welcome!,  </string>
+    <string name="your_knights">Your Knights:</string>
+    <string name="add_child_button">Add child account</string>
+    <string name="edit_child_button">Edit child account</string>
+    <string name="username_placeholder">Username</string>
+    <string name="knight_name_placeholder">Knight Name</string>
+
+
     <!-- Image Descriptions -->
     <string name="logo_desc">Logo</string>
+    <string name="home_desc">home image</string>
+    <string name="avatar_desc">knight avatar</string>
 </resources>
