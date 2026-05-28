@@ -22,6 +22,7 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:gravity="center"
+        android:paddingBottom="@dimen/bottom_nav_height"
         android:padding="16dp">
 
         <TextView

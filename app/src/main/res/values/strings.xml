@@ -51,4 +51,10 @@
     <string name="logo_desc">Logo</string>
     <string name="home_desc">home image</string>
     <string name="avatar_desc">knight avatar</string>
+
+    <string name="inventory_nav_desc">Inventory</string>
+    <string name="quests_nav_desc">Quests</string>
+    <string name="home_nav_desc">Home</string>
+    <string name="shop_nav_desc">Shop</string>
+    <string name="settings_nav_desc">Settings</string>
 </resources>

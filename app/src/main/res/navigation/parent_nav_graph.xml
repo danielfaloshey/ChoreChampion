@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_nav_graph"
+    app:startDestination="@id/parentHomeFragment">
+
+    <fragment
+        android:id="@+id/parentHomeFragment"
+        android:name="com.faloshey.chorechampion.fragments.parent.ParentHomeFragment"
+        android:label="ParentHomeFragment" >
+        <action
+            android:id="@+id/action_parentHomeFragment_to_parentInventoryFragment"
+            app:destination="@id/parentInventoryFragment" />
+        <action
+            android:id="@+id/action_parentHomeFragment_to_parentQuestsFragment"
+            app:destination="@id/parentQuestsFragment" />
+        <action
+            android:id="@+id/action_parentHomeFragment_to_parentShopFragment"
+            app:destination="@id/parentShopFragment" />
+        <action
+            android:id="@+id/action_parentHomeFragment_to_parentSettingsFragment"
+            app:destination="@id/parentSettingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/parentInventoryFragment"
+        android:name="com.faloshey.chorechampion.fragments.parent.ParentInventoryFragment"
+        android:label="ParentInventoryFragment" >
+        <action
+            android:id="@+id/action_parentInventoryFragment_to_parentHomeFragment"
+            app:destination="@id/parentHomeFragment" />
+        <action
+            android:id="@+id/action_parentInventoryFragment_to_parentQuestsFragment"
+            app:destination="@id/parentQuestsFragment" />
+        <action
+            android:id="@+id/action_parentInventoryFragment_to_parentShopFragment"
+            app:destination="@id/parentShopFragment" />
+        <action
+            android:id="@+id/action_parentInventoryFragment_to_parentSettingsFragment"
+            app:destination="@id/parentSettingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/parentQuestsFragment"
+        android:name="com.faloshey.chorechampion.fragments.parent.ParentQuestsFragment"
+        android:label="ParentQuestsFragment" >
+        <action
+            android:id="@+id/action_parentQuestsFragment_to_parentHomeFragment"
+            app:destination="@id/parentHomeFragment" />
+        <action
+            android:id="@+id/action_parentQuestsFragment_to_parentSettingsFragment"
+            app:destination="@id/parentSettingsFragment" />
+        <action
+            android:id="@+id/action_parentQuestsFragment_to_parentShopFragment"
+            app:destination="@id/parentShopFragment" />
+        <action
+            android:id="@+id/action_parentQuestsFragment_to_parentInventoryFragment"
+            app:destination="@id/parentInventoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/parentShopFragment"
+        android:name="com.faloshey.chorechampion.fragments.parent.ParentShopFragment"
+        android:label="ParentShopFragment" >
+        <action
+            android:id="@+id/action_parentShopFragment_to_parentHomeFragment"
+            app:destination="@id/parentHomeFragment" />
+        <action
+            android:id="@+id/action_parentShopFragment_to_parentSettingsFragment"
+            app:destination="@id/parentSettingsFragment" />
+        <action
+            android:id="@+id/action_parentShopFragment_to_parentQuestsFragment"
+            app:destination="@id/parentQuestsFragment" />
+        <action
+            android:id="@+id/action_parentShopFragment_to_parentInventoryFragment"
+            app:destination="@id/parentInventoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/parentSettingsFragment"
+        android:name="com.faloshey.chorechampion.fragments.parent.ParentSettingsFragment"
+        android:label="ParentSettingsFragment" >
+        <action
+            android:id="@+id/action_parentSettingsFragment_to_parentHomeFragment"
+            app:destination="@id/parentHomeFragment" />
+        <action
+            android:id="@+id/action_parentSettingsFragment_to_parentShopFragment"
+            app:destination="@id/parentShopFragment" />
+        <action
+            android:id="@+id/action_parentSettingsFragment_to_parentQuestsFragment"
+            app:destination="@id/parentQuestsFragment" />
+        <action
+            android:id="@+id/action_parentSettingsFragment_to_parentInventoryFragment"
+            app:destination="@id/parentInventoryFragment" />
+    </fragment>
+
+</navigation>

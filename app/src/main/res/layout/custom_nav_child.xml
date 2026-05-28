@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/bottom_bar_bg"
+    android:elevation="16dp"
+    tools:ignore="UseCompoundDrawables">
+
+    <LinearLayout
+        android:id="@+id/child_nav_row"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/child_nav_quests_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/nav_quests_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/quests_revised"
+                android:contentDescription="@string/quests_nav_desc" />
+
+            <TextView
+                android:id="@+id/nav_quests_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quests_nav"
+                android:textSize="12sp"
+                android:fontFamily="@font/medieval_sharp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/child_nav_home_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/nav_home_icon"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:src="@drawable/castle_revised"
+                android:contentDescription="@string/home_nav_desc"/>
+
+            <TextView
+                android:id="@+id/nav_home_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_nav"
+                android:textSize="12sp"
+                android:fontFamily="@font/medieval_sharp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/child_nav_shop_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/nav_shop_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/shop_icon"
+                android:contentDescription="@string/inventory_nav_desc" />
+
+            <TextView
+                android:id="@+id/nav_shop_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_nav"
+                android:textSize="12sp"
+                android:fontFamily="@font/medieval_sharp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

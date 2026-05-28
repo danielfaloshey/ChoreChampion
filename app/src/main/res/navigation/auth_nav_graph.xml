@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/initialFragment">
+
+    <fragment
+        android:id="@+id/initialFragment"
+        android:name="com.faloshey.chorechampion.fragments.InitialFragment"
+        android:label="InitialFragment" >
+        <action
+            android:id="@+id/action_initialFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_initialFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.faloshey.chorechampion.fragments.SignupFragment"
+        android:label="SignupFragment" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.faloshey.chorechampion.fragments.LoginFragment"
+        android:label="LoginFragment" />
+</navigation>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/child_nav_graph"
+    app:startDestination="@id/childHomeFragment">
+
+    <fragment
+        android:id="@+id/childHomeFragment"
+        android:name="com.faloshey.chorechampion.fragments.child.ChildHomeFragment"
+        android:label="ChildHomeFragment" >
+        <action
+            android:id="@+id/action_childHomeFragment_to_childQuestsFragment"
+            app:destination="@id/childQuestsFragment" />
+        <action
+            android:id="@+id/action_childHomeFragment_to_childShopFragment"
+            app:destination="@id/childShopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/childQuestsFragment"
+        android:name="com.faloshey.chorechampion.fragments.child.ChildQuestsFragment"
+        android:label="ChildQuestsFragment" >
+        <action
+            android:id="@+id/action_childQuestsFragment_to_childHomeFragment"
+            app:destination="@id/childHomeFragment" />
+        <action
+            android:id="@+id/action_childQuestsFragment_to_childShopFragment"
+            app:destination="@id/childShopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/childShopFragment"
+        android:name="com.faloshey.chorechampion.fragments.child.ChildShopFragment"
+        android:label="ChildShopFragment" >
+        <action
+            android:id="@+id/action_childShopFragment_to_childQuestsFragment"
+            app:destination="@id/childQuestsFragment" />
+        <action
+            android:id="@+id/action_childShopFragment_to_childHomeFragment"
+            app:destination="@id/childHomeFragment" />
+    </fragment>
+</navigation>
