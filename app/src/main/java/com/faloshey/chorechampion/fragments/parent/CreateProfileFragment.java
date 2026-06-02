@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import com.faloshey.chorechampion.R;
 
-public class ParentQuestsFragment extends Fragment {
+public class CreateProfileFragment extends Fragment {
 
-    public ParentQuestsFragment() { super(R.layout.fragment_parentquests); }
+    public CreateProfileFragment() { super(R.layout.fragment_createprofile); }
 }

@@ -8,6 +8,7 @@
     <string name="edit_button">Edit</string>
     <string name="add_button">Add</string>
     <string name="onward_button">Onward!</string>
+    <string name="delete_button">Delete</string>
     <string name="done_button">Done</string>
     <string name="save_button">Save</string>
     <string name="back_button">Back</string>
@@ -46,12 +47,39 @@
     <string name="username_placeholder">Username</string>
     <string name="knight_name_placeholder">Knight Name</string>
 
+    <!-- Parent Quests -->
+    <string name="quests_title">Quests</string>
+    <string name="quests_msg">Select to edit/delete quest.</string>
+
+    <string name="quest_name_example">Quest Name</string>
+    <string name="quest_desc_example">Quest Description</string>
+    <string name="assigned_to_example">Assigned to here</string>
+    <string name="gold_example">200 G</string>
+
+    <!-- Parent Shop -->
+    <string name="shop_title">Shop</string>
+    <string name="shop_msg">Select to delete from Shop.</string>
+
+    <string name="shop_item_example">Shop item</string>
+    <string name="bought_by">Bought By:</string>
+    <string name="bought_by_example">Child here</string>
+
+    <!-- Parent Create Child Profile -->
+    <string name="create_profile_title">Create Child Profile</string>
+    <string name="profile_edit_text_hint">Enter child username</string>
+    <string name="profile_consent_msg">
+        By creating a child profile, you confirm you are the parent or guardian and consent to storing this child\'s username and avatar. You may delete this profile at any time in \"Edit\" in your Home screen.
+    </string>
 
     <!-- Image Descriptions -->
     <string name="logo_desc">Logo</string>
     <string name="home_desc">home image</string>
     <string name="avatar_desc">knight avatar</string>
+    <string name="quests_desc">quests image</string>
+    <string name="shop_desc">Shop image</string>
+    <string name="profile_desc">Create Profile image</string>
 
+    <!-- Nav Image Descriptions -->
     <string name="inventory_nav_desc">Inventory</string>
     <string name="quests_nav_desc">Quests</string>
     <string name="home_nav_desc">Home</string>
