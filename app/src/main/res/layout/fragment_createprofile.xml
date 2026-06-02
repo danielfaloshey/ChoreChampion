@@ -75,11 +75,12 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:backgroundTint="@color/new_blue"
+            android:elevation="12dp"
+            android:fontFamily="@font/irishgrover_regular"
             android:text="@string/onward_button"
             android:textSize="24sp"
-            android:fontFamily="@font/irishgrover_regular"
-            android:backgroundTint="@color/new_blue"
-            android:elevation="12dp"/>
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 

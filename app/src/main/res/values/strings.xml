@@ -71,6 +71,22 @@
         By creating a child profile, you confirm you are the parent or guardian and consent to storing this child\'s username and avatar. You may delete this profile at any time in \"Edit\" in your Home screen.
     </string>
 
+    <!-- Inventory -->
+    <string name="inventory_title">Inventory</string>
+    <string name="inventory_msg">AFTER reward is given to your knight, long press to remove item from their inventory!</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="edit_display_name">Edit display name</string>
+    <string name="edit_pin">Edit PIN</string>
+    <string name="adjust_music">Adjust Music Volume:</string>
+    <string name="edit_child_profile">Edit child account:</string>
+    <string name="edit_username">Edit username</string>
+    <string name="delete_account_button">Delete child account</string>
+    <string name="log_out_button">Log out</string>
+    <string name="coppa_link">https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa</string>
+
+
     <!-- Image Descriptions -->
     <string name="logo_desc">Logo</string>
     <string name="home_desc">home image</string>
@@ -78,6 +94,8 @@
     <string name="quests_desc">quests image</string>
     <string name="shop_desc">Shop image</string>
     <string name="profile_desc">Create Profile image</string>
+    <string name="inventory_desc">Inventory background</string>
+    <string name="settings_desc">Settings background</string>
 
     <!-- Nav Image Descriptions -->
     <string name="inventory_nav_desc">Inventory</string>
