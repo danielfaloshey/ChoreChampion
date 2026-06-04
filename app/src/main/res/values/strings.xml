@@ -14,6 +14,8 @@
     <string name="back_button">Back</string>
     <string name="add_child">+ Add child account</string>
     <string name="edit_child">- Edit child account</string>
+    <string name="edit_avatar">Edit Avatar</string>
+    <string name="exit_button">Exit to parent mode</string>
 
     <!-- Nav Bar Buttons -->
     <string name="inventory_nav">Inventory</string>
@@ -87,6 +89,16 @@
     <string name="coppa_link">https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa</string>
 
 
+    <!-- Child Home -->
+    <string name="username_label">Username</string>
+    <string name="gold_label">Gold: 500</string>
+    <string name="xp_label">XP: 900</string>
+
+    <!-- Child Quests -->
+    <string name="select_msg">Select to choose quest!</string>
+    <string name="mark_done_msg">Click star to mark done!</string>
+
+
     <!-- Image Descriptions -->
     <string name="logo_desc">Logo</string>
     <string name="home_desc">home image</string>
@@ -96,6 +108,7 @@
     <string name="profile_desc">Create Profile image</string>
     <string name="inventory_desc">Inventory background</string>
     <string name="settings_desc">Settings background</string>
+
 
     <!-- Nav Image Descriptions -->
     <string name="inventory_nav_desc">Inventory</string>

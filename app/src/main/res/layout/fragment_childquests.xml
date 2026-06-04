@@ -8,12 +8,12 @@
     android:fitsSystemWindows="true">
 
     <ImageView
-        android:id="@+id/parent_quests_background"
+        android:id="@+id/child_quests_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/quests_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/guild_new"
+        android:src="@drawable/quest_new"
         tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:text="@string/quests_title"
             android:fontFamily="@font/irishgrover_regular"
             android:textSize="36sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             app:cardBackgroundColor="@color/glassWhite">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/parent_quest_grid"
+                android:id="@+id/child_quest_grid"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:padding="16dp"
@@ -53,50 +53,37 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
-            android:id="@+id/quest_btn_layout"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:weightSum="2">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/quest_add_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="12dp"
-                android:text="@string/add_button"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/irishgrover_regular"
-                android:textSize="24sp"
-                android:backgroundTint="@color/forest_green"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/quest_edit_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:elevation="12dp"
-                android:text="@string/edit_button"
-                android:fontFamily="@font/irishgrover_regular"
-                android:textSize="24sp"
-                android:backgroundTint="@color/red"/>
-
-        </LinearLayout>
+            android:text="@string/select_msg"
+            android:fontFamily="@font/macondo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/quests_msg"
+            android:text="@string/mark_done_msg"
             android:fontFamily="@font/macondo"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
             android:textColor="@color/white"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/select_quests_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/new_blue"
+            android:fontFamily="@font/macondo"
+            android:text="@string/onward_button"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
+
 
 </FrameLayout>
