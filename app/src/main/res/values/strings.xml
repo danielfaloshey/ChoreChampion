@@ -98,6 +98,17 @@
     <string name="select_msg">Select to choose quest!</string>
     <string name="mark_done_msg">Click star to mark done!</string>
 
+    <!-- Child Shop -->
+    <string name="current_gold_default">Current Gold: 500</string>
+    <string name="buy_button">Buy!</string>
+
+    <!-- Avatar Selection -->
+    <string name="avatar_selection_title">Choose an avatar</string>
+    <string name="drop_down_default">Choose class</string>
+
+    <!-- PIN -->
+    <string name="pin_title">Enter PIN to exit</string>
+    <string name="enter_btn">Enter PIN</string>
 
     <!-- Image Descriptions -->
     <string name="logo_desc">Logo</string>
@@ -108,7 +119,8 @@
     <string name="profile_desc">Create Profile image</string>
     <string name="inventory_desc">Inventory background</string>
     <string name="settings_desc">Settings background</string>
-
+    <string name="avatar_background_desc">Avatar Selection background</string>
+    <string name="pin_background_desc">PIN background</string>
 
     <!-- Nav Image Descriptions -->
     <string name="inventory_nav_desc">Inventory</string>

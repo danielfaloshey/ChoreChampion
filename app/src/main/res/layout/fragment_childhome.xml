@@ -103,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
+                    app:cornerRadius="4dp"
                     android:text="@string/edit_avatar"
                     android:fontFamily="@font/macondo"
                     android:textStyle="bold"
@@ -120,6 +121,7 @@
             android:layout_marginStart="24dp"
             android:text="@string/exit_button"
             android:textSize="16sp"
+            app:cornerRadius="4dp"
             android:textStyle="bold"
             android:fontFamily="@font/macondo"
             android:backgroundTint="@color/red"/>

@@ -46,10 +46,9 @@
             android:background="@drawable/spinner_background"
             android:popupBackground="@drawable/spinner_popup_background"/>
 
-        <!-- TODO: change layout_height to 0dp before running (400 is placeholder) -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="24dp"
             app:cardElevation="16dp"
@@ -60,7 +59,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/inventory_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="350dp"
                 android:padding="16dp"
                 android:clipToPadding="false"/>
         </com.google.android.material.card.MaterialCardView>

@@ -70,6 +70,7 @@
                 android:elevation="12dp"
                 android:text="@string/add_button"
                 android:layout_marginEnd="8dp"
+                app:cornerRadius="4dp"
                 android:fontFamily="@font/irishgrover_regular"
                 android:textSize="24sp"
                 android:backgroundTint="@color/forest_green"/>
@@ -81,6 +82,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 android:elevation="12dp"
+                app:cornerRadius="4dp"
                 android:text="@string/edit_button"
                 android:fontFamily="@font/irishgrover_regular"
                 android:textSize="24sp"

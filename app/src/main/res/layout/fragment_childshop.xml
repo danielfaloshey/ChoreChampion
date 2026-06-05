@@ -8,12 +8,12 @@
     android:fitsSystemWindows="true">
 
     <ImageView
-        android:id="@+id/child_quests_background"
+        android:id="@+id/child_shop_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/quests_desc"
+        android:contentDescription="@string/shop_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/quest_new"
+        android:src="@drawable/shop_new"
         tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
@@ -26,13 +26,36 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/quests_title"
+            android:id="@+id/shop_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/quests_title"
+            android:text="@string/shop_title"
             android:fontFamily="@font/irishgrover_regular"
             android:textSize="36sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/white"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:strokeColor="#40FFFFFF"
+            app:strokeWidth="2dp"
+            app:cardBackgroundColor="@color/glassWhite">
+
+            <TextView
+                android:id="@+id/current_gold_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_gold_default"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="@font/medieval_sharp"/>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -45,46 +68,24 @@
             app:cardBackgroundColor="@color/glassWhite">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/child_quest_grid"
+                android:id="@+id/child_shop_grid"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="300dp"
                 android:padding="16dp"
                 android:clipToPadding="false"/>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_msg"
-            android:fontFamily="@font/macondo"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mark_done_msg"
-            android:fontFamily="@font/macondo"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/select_quests_btn"
+            android:id="@+id/buy_btn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/new_blue"
-            android:fontFamily="@font/macondo"
-            android:text="@string/onward_button"
-            android:textColor="@color/white"
-            app:cornerRadius="4dp"
+            android:text="@string/buy_button"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            app:cornerRadius="4dp"
+            android:fontFamily="@font/irishgrover_regular"
+            android:backgroundTint="@color/forest_green"/>
 
     </LinearLayout>
-
 
 </FrameLayout>

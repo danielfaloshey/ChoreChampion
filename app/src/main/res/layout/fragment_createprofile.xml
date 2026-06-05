@@ -72,9 +72,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_profile_btn"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            app:cornerRadius="4dp"
             android:backgroundTint="@color/new_blue"
             android:elevation="12dp"
             android:fontFamily="@font/irishgrover_regular"
