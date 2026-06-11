@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginFragment extends Fragment {
 
     private FirebaseAuth auth;
-
     private TextInputEditText emailInput;
     private TextInputEditText passwordInput;
 
@@ -46,7 +45,6 @@ public class LoginFragment extends Fragment {
         MaterialButton forgotPasswordBtn = view.findViewById(R.id.forgot_password_btn);
 
         loginBtn.setOnClickListener(v -> handleLogin());
-
         forgotPasswordBtn.setOnClickListener(v-> handleForgotPassword());
     }
 
@@ -68,13 +66,12 @@ public class LoginFragment extends Fragment {
                 .addOnCompleteListener(task -> {
 
                     if (!task.isSuccessful()) {
-                        Toast.makeText(getContext(), "Login failed", Toast.LENGTH_SHORT).show();
+                        String errorMsg = task.getException() != null ? task.getException().getMessage() : "Login failed";
+                        Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
                         return;
                     }
 
-                    if (getActivity() instanceof MainActivity) {
-                        ((MainActivity) getActivity()).enterParentMode();
-                    }
+                    navigateToParentMode();
                 });
 
     }
@@ -84,17 +81,25 @@ public class LoginFragment extends Fragment {
         String email = emailInput.getText() != null ? emailInput.getText().toString().trim() : "";
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getContext(), "Enter your email first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Enter your email in the email field first", Toast.LENGTH_SHORT).show();
             return;
         }
 
         auth.sendPasswordResetEmail(email)
-                .addOnSuccessListener(aVoid->
-                        Toast.makeText(getContext(), "Reset email sent", Toast.LENGTH_SHORT).show()
-                )
-                .addOnFailureListener(e ->
-                        Toast.makeText(getContext(), "Failed to send reset email", Toast.LENGTH_SHORT).show()
-                );
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Reset link sent to " + email, Toast.LENGTH_LONG).show();
+                    } else {
+                        String errorMsg = task.getException() != null ? task.getException().getMessage() : "Failed to send reset email";
+                        Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void navigateToParentMode() {
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).enterParentMode();
+        }
     }
 
 }

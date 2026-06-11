@@ -5,7 +5,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
@@ -13,20 +16,27 @@ public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
     private FrameLayout bottomNavContainer;
+    private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
         bottomNavContainer = findViewById(R.id.bottom_nav_container);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
-
         navController = Objects.requireNonNull(navHostFragment).getNavController();
 
-        navController.setGraph(R.navigation.auth_nav_graph);
+        if (auth.getCurrentUser() != null) {
+            enterParentMode();
+        }
+        else {
+            navController.setGraph(R.navigation.auth_nav_graph);
+        }
 
     }
 
@@ -48,29 +58,25 @@ public class MainActivity extends AppCompatActivity {
         View shop = findViewById(R.id.nav_shop_container);
         View settings = findViewById(R.id.nav_settings_container);
 
+        NavOptions navOptions = new NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setPopUpTo(navController.getGraph().getStartDestinationId(), false)
+                .build();
+
         if (inventory != null) {
-            inventory.setOnClickListener(v ->
-                    navController.navigate(R.id.parentInventoryFragment));
+            inventory.setOnClickListener(v -> navController.navigate(R.id.parentInventoryFragment, null, navOptions));
         }
-
         if (quests != null) {
-            quests.setOnClickListener(v ->
-                    navController.navigate(R.id.parentQuestsFragment));
+            quests.setOnClickListener(v -> navController.navigate(R.id.parentQuestsFragment, null, navOptions));
         }
-
         if (home != null) {
-            home.setOnClickListener(v ->
-                    navController.navigate(R.id.parentHomeFragment));
+            home.setOnClickListener(v -> navController.navigate(R.id.parentHomeFragment, null, navOptions));
         }
-
         if (shop != null) {
-            shop.setOnClickListener(v ->
-                    navController.navigate(R.id.parentShopFragment));
+            shop.setOnClickListener(v -> navController.navigate(R.id.parentShopFragment, null, navOptions));
         }
-
         if (settings != null) {
-            settings.setOnClickListener(v ->
-                    navController.navigate(R.id.parentSettingsFragment));
+            settings.setOnClickListener(v -> navController.navigate(R.id.parentSettingsFragment, null, navOptions));
         }
     }
 
@@ -85,29 +91,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpChildNavClicks() {
-
         View quests = findViewById(R.id.child_nav_quests_container);
         View home = findViewById(R.id.child_nav_home_container);
         View shop = findViewById(R.id.child_nav_shop_container);
 
+        NavOptions navOptions = new NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setPopUpTo(navController.getGraph().getStartDestinationId(), false)
+                .build();
+
         if (quests != null) {
-            quests.setOnClickListener(v ->
-                    navController.navigate(R.id.childQuestsFragment));
+            quests.setOnClickListener(v -> navController.navigate(R.id.childQuestsFragment, null, navOptions));
         }
-
         if (home != null) {
-            home.setOnClickListener(v ->
-                    navController.navigate(R.id.childHomeFragment));
+            home.setOnClickListener(v -> navController.navigate(R.id.childHomeFragment, null, navOptions));
         }
-
         if (shop != null) {
-            shop.setOnClickListener(v ->
-                    navController.navigate(R.id.childShopFragment));
+            shop.setOnClickListener(v -> navController.navigate(R.id.childShopFragment, null, navOptions));
         }
-
     }
-
-
-
 
 }

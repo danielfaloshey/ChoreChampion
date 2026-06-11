@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_parentHomeFragment_to_parentSettingsFragment"
             app:destination="@id/parentSettingsFragment" />
+        <action
+            android:id="@+id/action_parentHomeFragment_to_createProfileFragment"
+            app:destination="@id/createProfileFragment" />
     </fragment>
 
     <fragment
@@ -93,5 +96,9 @@
             android:id="@+id/action_parentSettingsFragment_to_parentInventoryFragment"
             app:destination="@id/parentInventoryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createProfileFragment"
+        android:name="com.faloshey.chorechampion.fragments.parent.CreateProfileFragment"
+        android:label="CreateProfileFragment" />
 
 </navigation>

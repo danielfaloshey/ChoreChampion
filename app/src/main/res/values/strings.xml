@@ -33,6 +33,7 @@
     <string name="google_login_desc">Google login</string>
 
     <string name="create_title">-- Create Account --</string>
+    <string name="create_displayName">Enter parent username</string>
     <string name="create_email">Enter your email address</string>
     <string name="create_password">Create a password (min 6 characters)</string>
     <string name="confirm_password">Confirm password</string>

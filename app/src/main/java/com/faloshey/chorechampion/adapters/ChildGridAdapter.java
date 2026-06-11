@@ -9,16 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.models.ChildModel;
-
 import java.util.List;
 
 @SuppressWarnings("ClassEscapesDefinedScope")
 public class ChildGridAdapter extends RecyclerView.Adapter<ChildGridAdapter.ChildViewHolder> {
 
     private final List<ChildModel> childList;
+    private final OnChildClickListener clickListener;
 
-    public ChildGridAdapter(List<ChildModel> childList) {
+    public interface OnChildClickListener {
+        void onChildClick(ChildModel child);
+    }
+
+    public ChildGridAdapter(List<ChildModel> childList, OnChildClickListener clickListener) {
         this.childList = childList;
+        this.clickListener = clickListener;
+
     }
 
     @NonNull
@@ -32,11 +38,14 @@ public class ChildGridAdapter extends RecyclerView.Adapter<ChildGridAdapter.Chil
     @Override
     public void onBindViewHolder(@NonNull ChildGridAdapter.ChildViewHolder holder, int position) {
         ChildModel child = childList.get(position);
+        holder.nameText.setText(child.getUsername());
 
-        holder.name.setText(child.getUsername());
+        //TODO: Change when Lordicon is ready
+        holder.avatarImage.setImageResource(R.drawable.ic_placeholder_user);
 
-        //TODO: Change setImageResource after loading child account info implemented
-        holder.avatar.setImageResource(R.drawable.ic_placeholder_user);
+        holder.itemView.setOnClickListener(v -> {
+            if (clickListener != null) clickListener.onChildClick(child);
+        });
     }
 
     @Override
@@ -45,13 +54,13 @@ public class ChildGridAdapter extends RecyclerView.Adapter<ChildGridAdapter.Chil
     }
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
-        ImageView avatar;
-        TextView name;
+        ImageView avatarImage;
+        TextView nameText;
 
         public ChildViewHolder(@NonNull View itemView) {
             super(itemView);
-            avatar = itemView.findViewById(R.id.knight_avatar);
-            name = itemView.findViewById(R.id.knight_name);
+            avatarImage = itemView.findViewById(R.id.knight_avatar);
+            nameText = itemView.findViewById(R.id.knight_name);
         }
     }
 }
