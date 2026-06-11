@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildGridAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
@@ -63,8 +65,9 @@ public class ParentHomeFragment extends Fragment {
         childList = new ArrayList<>();
         adapter = new ChildGridAdapter(childList, child -> {
 
-            // TODO: Placeholder for now, handle clicks for child profile transitions
-            Toast.makeText(getContext(), "Selected: " + child.getUsername(), Toast.LENGTH_SHORT).show();
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).switchProfileToChild(child);
+            }
         });
         childRecyclerView.setAdapter(adapter);
 

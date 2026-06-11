@@ -14,6 +14,12 @@
         <action
             android:id="@+id/action_childHomeFragment_to_childShopFragment"
             app:destination="@id/childShopFragment" />
+        <action
+            android:id="@+id/action_childHomeFragment_to_avatarSelectionFragment"
+            app:destination="@id/avatarSelectionFragment" />
+        <action
+            android:id="@+id/action_childHomeFragment_to_pinValidationFragment"
+            app:destination="@id/pinValidationFragment" />
     </fragment>
 
     <fragment
@@ -39,4 +45,12 @@
             android:id="@+id/action_childShopFragment_to_childHomeFragment"
             app:destination="@id/childHomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/avatarSelectionFragment"
+        android:name="com.faloshey.chorechampion.fragments.child.AvatarSelectionFragment"
+        android:label="AvatarSelectionFragment" />
+    <fragment
+        android:id="@+id/pinValidationFragment"
+        android:name="com.faloshey.chorechampion.fragments.child.PinValidationFragment"
+        android:label="PinValidationFragment" />
 </navigation>

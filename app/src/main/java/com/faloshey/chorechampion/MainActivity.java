@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -17,12 +20,13 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     private FrameLayout bottomNavContainer;
     private FirebaseAuth auth;
-
+    private AppSessionViewModel sessionViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sessionViewModel = new ViewModelProvider(this).get(AppSessionViewModel.class);
 
         auth = FirebaseAuth.getInstance();
         bottomNavContainer = findViewById(R.id.bottom_nav_container);
@@ -78,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
         if (settings != null) {
             settings.setOnClickListener(v -> navController.navigate(R.id.parentSettingsFragment, null, navOptions));
         }
+    }
+
+    public void switchProfileToChild(ChildModel child) {
+        sessionViewModel.setActiveChild(child);
+
+        enterChildMode();
     }
 
     // Enter Child Mode
