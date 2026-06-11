@@ -137,7 +137,7 @@ public class ParentHomeFragment extends Fragment {
         String parentId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
         new AlertDialog.Builder(getContext())
-                .setTitle("Manage" + child.getUsername())
+                .setTitle("Manage " + child.getUsername())
                 .setPositiveButton("Rename", (dialog, which) -> {
 
                     EditText inputField = new EditText(getContext());

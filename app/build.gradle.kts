@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.faloshey.chorechampion"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.faloshey.chorechampion"

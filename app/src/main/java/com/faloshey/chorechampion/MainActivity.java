@@ -33,14 +33,23 @@ public class MainActivity extends AppCompatActivity {
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
-        navController = Objects.requireNonNull(navHostFragment).getNavController();
 
+        if (navHostFragment != null) {
+            navController = navHostFragment.getNavController();
+        } else {
+            throw new IllegalStateException("NavHostFragment not found! Check your activity_main.xml layout tag.");
+        }
+
+        navController.setGraph(R.navigation.auth_nav_graph);
+        /*
         if (auth.getCurrentUser() != null) {
             enterParentMode();
         }
         else {
             navController.setGraph(R.navigation.auth_nav_graph);
         }
+
+         */
 
     }
 
@@ -64,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavOptions navOptions = new NavOptions.Builder()
                 .setLaunchSingleTop(true)
-                .setPopUpTo(navController.getGraph().getStartDestinationId(), false)
+                .setPopUpTo(R.id.parent_nav_graph, false)
                 .build();
 
         if (inventory != null) {
@@ -107,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavOptions navOptions = new NavOptions.Builder()
                 .setLaunchSingleTop(true)
-                .setPopUpTo(navController.getGraph().getStartDestinationId(), false)
+                .setPopUpTo(R.id.child_nav_graph, false)
                 .build();
 
         if (quests != null) {
