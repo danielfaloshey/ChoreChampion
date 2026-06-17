@@ -112,6 +112,19 @@
     <string name="pin_title">Enter PIN to exit</string>
     <string name="enter_btn">Enter PIN</string>
 
+    <!-- Quest Item -->
+    <string name="quest_title_default">Quest Title</string>
+    <string name="quest_gold_amount_default">50</string>
+    <string name="gold">G</string>
+    <string name="quest_description_default">Quest description goes here</string>
+    <string name="quest_assignment_default">Assigned to: test</string>
+
+    <!-- Quest Dialog -->
+    <string name="dialog_title">Quest Title (ex. Wash the dishes)</string>
+    <string name="dialog_description">Quest Description (Instructions)</string>
+    <string name="dialog_gold">Gold Reward Amount</string>
+    <string name="dialog_assign">Assign to Champion:</string>
+
     <!-- Image Descriptions -->
     <string name="logo_desc">Logo</string>
     <string name="home_desc">home image</string>

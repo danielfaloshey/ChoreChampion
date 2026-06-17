@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/dialog_quest_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/dialog_title"
+        android:importantForAutofill="no"
+        android:minHeight="48dp"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/dialog_quest_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="@string/dialog_description"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/dialog_quest_gold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:minHeight="48dp"
+        android:hint="@string/dialog_gold"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_assign"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="4dp"/>
+
+    <Spinner
+        android:id="@+id/dialog_quest_assignment_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:spinnerMode="dropdown"/>
+
+</LinearLayout>
