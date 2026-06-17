@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +39,27 @@ public class ChildGridAdapter extends RecyclerView.Adapter<ChildGridAdapter.Chil
     @Override
     public void onBindViewHolder(@NonNull ChildGridAdapter.ChildViewHolder holder, int position) {
         ChildModel child = childList.get(position);
+        Context context = holder.itemView.getContext();
+
         holder.nameText.setText(child.getUsername());
 
-        //TODO: Change when Lordicon is ready
-        holder.avatarImage.setImageResource(R.drawable.ic_placeholder_user);
+        String savedAvatarName = child.getAvatarName();
+
+        if (savedAvatarName != null && !savedAvatarName.trim().isEmpty()) {
+            int resId = context.getResources().getIdentifier(
+                    savedAvatarName,
+                    "drawable",
+                    context.getPackageName()
+            );
+
+            if (resId != 0) {
+                holder.avatarImage.setImageResource(resId);
+            } else {
+                holder.avatarImage.setImageResource(R.drawable.ic_placeholder_user);
+            }
+        } else {
+            holder.avatarImage.setImageResource(R.drawable.ic_placeholder_user);
+        }
 
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) clickListener.onChildClick(child);

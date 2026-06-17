@@ -22,7 +22,8 @@
         android:fontFamily="@font/medieval_sharp"
         android:paddingTop="4dp"
         android:text="@string/knight_name_placeholder"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="16sp"
         tools:ignore="TextContrastCheck" />
 

@@ -9,7 +9,7 @@ public class ChildModel {
 
     private String childId;
     private String username;
-    private String avatarIconId;
+    private String avatarName;
     private int gold;
     private int xp;
     private List<String> rewards;
@@ -23,18 +23,18 @@ public class ChildModel {
     public ChildModel(String childId, String username) {
         this.childId = childId;
         this.username = username;
-        this.avatarIconId = null;
+        this.avatarName = null;
         this.gold = 0;
         this.xp = 0;
         this.rewards = new ArrayList<>();
         this.quests = new ArrayList<>();
     }
 
-    public ChildModel(String childId, String username, String avatarIconId, int gold, int xp,
+    public ChildModel(String childId, String username, String avatarName, int gold, int xp,
                       List<String> rewards, List<String> quests, Date createdAt) {
         this.childId = childId;
         this.username = username;
-        this.avatarIconId = avatarIconId;
+        this.avatarName = avatarName;
         this.gold = gold;
         this.xp = xp;
         this.rewards = rewards;
@@ -48,8 +48,8 @@ public class ChildModel {
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
-    public String getAvatarIconId() { return avatarIconId; }
-    public void setAvatarIconId(String avatarIconId) { this.avatarIconId = avatarIconId; }
+    public String getAvatarName() { return avatarName; }
+    public void setAvatarName(String avatarName) { this.avatarName = avatarName; }
 
     public int getGold() { return gold; }
     public void setGold(int gold) { this.gold = gold; }

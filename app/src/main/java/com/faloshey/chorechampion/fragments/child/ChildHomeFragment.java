@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class ChildHomeFragment extends Fragment {
     private TextView usernameText;
     private TextView goldText;
     private TextView xpText;
+    private ImageView avatarImage;
 
     public ChildHomeFragment() { }
 
@@ -51,6 +53,8 @@ public class ChildHomeFragment extends Fragment {
         usernameText = view.findViewById(R.id.username_label);
         goldText = view.findViewById(R.id.gold_label);
         xpText = view.findViewById(R.id.xp_label);
+        avatarImage = view.findViewById(R.id.child_home_avatar);
+
         MaterialButton editAvatarBtn = view.findViewById(R.id.edit_avatar_btn);
         MaterialButton exitBtn = view.findViewById(R.id.exit_btn);
 
@@ -63,9 +67,14 @@ public class ChildHomeFragment extends Fragment {
             }
         });
 
-        editAvatarBtn.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_childHomeFragment_to_avatarSelectionFragment)
-        );
+        editAvatarBtn.setOnClickListener(v -> {
+            ChildModel currentChild = sessionViewModel.getActiveChild().getValue();
+            if (currentChild != null) {
+                Bundle args = new Bundle();
+                args.putString("childId", currentChild.getChildId());
+                Navigation.findNavController(view).navigate(R.id.action_childHomeFragment_to_avatarSelectionFragment, args);
+            }
+        });
 
         exitBtn.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_childHomeFragment_to_pinValidationFragment)
@@ -96,7 +105,23 @@ public class ChildHomeFragment extends Fragment {
                             goldText.setText("Gold: " + updatedChild.getGold());
                             xpText.setText("XP: " + updatedChild.getXp());
 
-                            // TODO: update avatar image from default after Lordicon is ready
+                            String savedAvatarName = updatedChild.getAvatarName();
+
+                            if (savedAvatarName != null && !savedAvatarName.trim().isEmpty()) {
+                                int resId = requireContext().getResources().getIdentifier(
+                                        savedAvatarName,
+                                        "drawable",
+                                        requireContext().getPackageName()
+                                );
+
+                                if (resId != 0) {
+                                    avatarImage.setImageResource(resId);
+                                } else {
+                                    avatarImage.setImageResource(R.drawable.ic_placeholder_user);
+                                }
+                            } else {
+                                avatarImage.setImageResource(R.drawable.ic_placeholder_user);
+                            }
                         }
                     }
                 });
@@ -109,7 +134,5 @@ public class ChildHomeFragment extends Fragment {
             childProfileListener.remove();
         }
     }
-
-
 
 }

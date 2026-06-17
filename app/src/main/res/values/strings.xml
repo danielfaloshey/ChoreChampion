@@ -106,6 +106,7 @@
     <!-- Avatar Selection -->
     <string name="avatar_selection_title">Choose an avatar</string>
     <string name="drop_down_default">Choose class</string>
+    <string name="icon_credit">Avatar images made by Freepik from www.flaticon.com</string>
 
     <!-- PIN -->
     <string name="pin_title">Enter PIN to exit</string>

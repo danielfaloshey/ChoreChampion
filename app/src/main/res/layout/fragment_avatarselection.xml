@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-    android:fitsSystemWindows="true">
+    android:fillViewport="true">
 
     <ImageView
         android:id="@+id/avatar_selection_background"
@@ -66,6 +65,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/avatar_done_btn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/new_blue"
@@ -73,7 +73,19 @@
             android:text="@string/done_button"
             android:textColor="@color/white"
             android:textSize="24sp"
-            app:cornerRadius="4dp" />
+            app:cornerRadius="4dp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/icon_credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/icon_credit"
+            android:fontFamily="@font/macondo"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
     </LinearLayout>
 
 </FrameLayout>
