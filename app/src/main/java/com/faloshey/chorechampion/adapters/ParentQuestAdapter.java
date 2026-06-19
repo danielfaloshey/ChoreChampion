@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.models.QuestModel;
 import com.google.android.material.card.MaterialCardView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParentQuestAdapter extends RecyclerView.Adapter<ParentQuestAdapter.QuestViewHolder> {
 
-    private List<QuestModel> questList;
+    private final List<QuestModel> questList;
     private final OnQuestClickListener clickListener;
-
     private int selectedPosition = -1;
 
     public interface OnQuestClickListener {
@@ -60,13 +61,11 @@ public class ParentQuestAdapter extends RecyclerView.Adapter<ParentQuestAdapter.
 
             holder.cardRoot.setStrokeColor(ContextCompat.getColor(context, R.color.new_blue));
             holder.cardRoot.setStrokeWidth(6);
-
             holder.cardRoot.setCardBackgroundColor(Color.parseColor("#F5F9FF"));
         } else {
 
             holder.cardRoot.setStrokeColor(Color.parseColor("#20000000"));
             holder.cardRoot.setStrokeWidth(4);
-
             holder.cardRoot.setCardBackgroundColor(ContextCompat.getColor(context, R.color.glassWhite));
         }
 
@@ -103,8 +102,9 @@ public class ParentQuestAdapter extends RecyclerView.Adapter<ParentQuestAdapter.
     }
 
     public void updateList(List<QuestModel> newQuests) {
+        List<QuestModel> safeCopy = new ArrayList<>(newQuests);
         this.questList.clear();
-        this.questList.addAll(newQuests);
+        this.questList.addAll(safeCopy);
         this.selectedPosition = -1;
         notifyDataSetChanged();
     }
@@ -112,10 +112,7 @@ public class ParentQuestAdapter extends RecyclerView.Adapter<ParentQuestAdapter.
 
     static class QuestViewHolder extends RecyclerView.ViewHolder {
         MaterialCardView cardRoot;
-        TextView titleText;
-        TextView goldAmountText;
-        TextView descriptionText;
-        TextView assignmentText;
+        TextView titleText, goldAmountText, descriptionText, assignmentText;
 
         public QuestViewHolder(@NonNull View itemView) {
             super(itemView);

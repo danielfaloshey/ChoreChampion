@@ -60,6 +60,9 @@
     <string name="assigned_to_example">Assigned to here</string>
     <string name="gold_example">200 G</string>
 
+    <string name="active_quests">Active Quests</string>
+    <string name="completed_quests">Need Approved</string>
+
     <!-- Parent Shop -->
     <string name="shop_title">Shop</string>
     <string name="shop_msg">Select to delete from Shop.</string>

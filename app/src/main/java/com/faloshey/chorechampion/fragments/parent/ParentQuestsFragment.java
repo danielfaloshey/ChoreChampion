@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.fragments.parent;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +24,9 @@ import com.faloshey.chorechampion.adapters.ParentQuestAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
 import com.faloshey.chorechampion.models.QuestModel;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
@@ -30,17 +36,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter.OnQuestClickListener {
 
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
+    private TabLayout tabLayout;
     private RecyclerView questRecyclerView;
     private ParentQuestAdapter questAdapter;
     private MaterialButton addBtn;
     private MaterialButton editBtn;
+    private TextView hintMsg;
 
-    private List<QuestModel> questList = new ArrayList<>();
+    private final List<QuestModel> masterQuestList = new ArrayList<>();
+    private final List<QuestModel> filteredQuestList = new ArrayList<>();
     private List<ChildModel> childrenList = new ArrayList<>();
 
     private ListenerRegistration questsListener;
@@ -62,20 +72,35 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        tabLayout = view.findViewById(R.id.parent_quest_tabs);
         questRecyclerView = view.findViewById(R.id.parent_quest_grid);
         addBtn = view.findViewById(R.id.quest_add_btn);
         editBtn = view.findViewById(R.id.quest_edit_btn);
+        hintMsg = view.findViewById(R.id.parent_hint_msg);
 
         questRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        questAdapter = new ParentQuestAdapter(questList, this);
+        questAdapter = new ParentQuestAdapter(filteredQuestList, this);
         questRecyclerView.setAdapter(questAdapter);
 
-        updateButtonStates();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                updateUiForCurrentTab();
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
 
         addBtn.setOnClickListener(v -> showQuestDialog(null));
         editBtn.setOnClickListener(v -> {
-            if (activeSelectedQuest != null) {
+            if (activeSelectedQuest == null) return;
+
+            if (tabLayout.getSelectedTabPosition() == 0) {
                 showQuestDialog(activeSelectedQuest);
+            } else {
+                approveQuestAndRewardChild(activeSelectedQuest);
             }
         });
 
@@ -88,20 +113,17 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
     private void listenToDataSets(String parentId) {
         questsListener = db.collection("Users").document(parentId)
                 .collection("quests")
-                .orderBy("createdAt")
                 .addSnapshotListener((snapshots, error) -> {
                     if (error != null) return;
                     if (snapshots != null) {
-                        List<QuestModel> updatedQuests = new ArrayList<>();
+                        masterQuestList.clear();
                         for (DocumentSnapshot doc : snapshots.getDocuments()) {
                             QuestModel quest = doc.toObject(QuestModel.class);
                             if (quest != null) {
-                                updatedQuests.add(quest);
+                                masterQuestList.add(quest);
                             }
                         }
-                        questList = updatedQuests;
-                        questAdapter.updateList(questList);
-                        onQuestCleared();
+                        updateUiForCurrentTab();
                     }
                 });
 
@@ -120,6 +142,88 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
                         childrenList = updatedChildren;
                     }
                 });
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void updateUiForCurrentTab() {
+        filteredQuestList.clear();
+        int activeTab = tabLayout.getSelectedTabPosition();
+        boolean isApprovalTab = (activeTab == 1);
+
+        for (QuestModel quest : masterQuestList) {
+            if (isApprovalTab) {
+
+                if (quest.isCompleted() && !quest.isApproved()) {
+                    filteredQuestList.add(quest);
+                }
+            } else {
+
+                if (!quest.isCompleted()) {
+                    filteredQuestList.add(quest);
+                }
+            }
+        }
+
+        questAdapter.updateList(filteredQuestList);
+        onQuestCleared();
+
+        if (isApprovalTab) {
+            addBtn.setVisibility(View.GONE);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2.0f);
+            params.setMargins(0, 0, 0, 0);
+            editBtn.setLayoutParams(params);
+
+            editBtn.setText("Approve Rewards!");
+            editBtn.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.forest_green));
+            hintMsg.setText("Select a completed quest to award payouts!");
+        } else {
+            addBtn.setVisibility(View.VISIBLE);
+
+            LinearLayout.LayoutParams editParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+            editParams.setMargins(8, 0, 0, 0);
+            editBtn.setLayoutParams(editParams);
+
+            editBtn.setText(R.string.edit_button);
+            editBtn.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.red));
+            hintMsg.setText(R.string.quests_msg);
+        }
+    }
+
+    private void approveQuestAndRewardChild(QuestModel quest) {
+        String parentId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        String childId = quest.getAssignedChildId();
+
+        if (childId == null || childId.trim().isEmpty()) {
+            Toast.makeText(getContext(), "Error: No child associated with this quest.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DocumentReference childRef = db.collection("Users").document(parentId).collection("children").document(childId);
+        DocumentReference questRef = db.collection("Users").document(parentId).collection("quests").document(quest.getQuestId());
+
+        db.runTransaction(transaction -> {
+            DocumentSnapshot childSnap = transaction.get(childRef);
+
+            if (childSnap.exists()) {
+                long currentGold = childSnap.getLong("gold") != null ? childSnap.getLong("gold") : 0;
+                long currentXp = childSnap.getLong("xp") != null ? childSnap.getLong("xp") : 0;
+
+                long newGold = currentGold + quest.getGoldReward();
+                long newXp = currentXp + quest.getXpReward();
+
+                transaction.update(childRef, "gold", newGold);
+                transaction.update(childRef, "xp", newXp);
+            }
+
+            transaction.delete(questRef);
+
+            return null;
+        }).addOnSuccessListener(aVoid ->
+                Toast.makeText(getContext(), "Rewards disbursed! Quest finalized.", Toast.LENGTH_SHORT).show()
+        ).addOnFailureListener(e ->
+                Toast.makeText(getContext(), "Transaction failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+        );
     }
 
     private void showQuestDialog(@Nullable QuestModel questToEdit) {
@@ -160,7 +264,7 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
                 .setView(dialogView)
-                .setTitle(isEditMode ? "Modify Quest Blueprint" : "Forge New Quest Document");
+                .setTitle(isEditMode ? "Modify Quest" : "Forge New Quest Document");
 
         builder.setPositiveButton(isEditMode ? "Save Changes" : "Deploy Quest", null);
         builder.setNegativeButton("Cancel", ((dialog, which) -> dialog.dismiss()));
