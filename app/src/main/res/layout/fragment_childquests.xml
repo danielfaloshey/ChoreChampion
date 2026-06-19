@@ -35,7 +35,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="24dp"
             app:cardElevation="16dp"
@@ -43,28 +43,49 @@
             app:strokeWidth="2dp"
             app:cardBackgroundColor="@color/glassWhite">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/child_quest_grid"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:padding="16dp"
-                android:clipToPadding="false"/>
+                android:layout_height="match_parent" android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/child_quest_tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:tabBackground="@android:color/transparent"
+                    app:tabTextColor="#A0000000"
+                    app:tabSelectedTextColor="@color/black"
+                    app:tabIndicatorColor="@color/black"
+                    app:tabIndicatorHeight="3dp"
+                    app:tabTextAppearance="@style/QuestTabTextStyle">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_quests" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quest_board" />
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/child_quest_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="vertical"/> </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
+            android:id="@+id/child_quest_hint_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/select_msg"
-            android:fontFamily="@font/macondo"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mark_done_msg"
             android:fontFamily="@font/macondo"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -77,13 +98,12 @@
             android:layout_marginTop="12dp"
             android:backgroundTint="@color/new_blue"
             android:fontFamily="@font/macondo"
-            android:text="@string/onward_button"
+            android:text="@string/select_button"
             android:textColor="@color/white"
-            app:cornerRadius="4dp"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:cornerRadius="4dp"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
-
-
 </FrameLayout>

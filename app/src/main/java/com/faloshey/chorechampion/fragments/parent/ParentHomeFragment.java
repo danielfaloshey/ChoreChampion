@@ -60,7 +60,6 @@ public class ParentHomeFragment extends Fragment {
         MaterialButton addChildBtn = view.findViewById(R.id.add_child_btn);
         MaterialButton editChildBtn = view.findViewById(R.id.edit_child_btn);
 
-        // Config grid
         childRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         childList = new ArrayList<>();
         adapter = new ChildGridAdapter(childList, child -> {
@@ -71,19 +70,16 @@ public class ParentHomeFragment extends Fragment {
         });
         childRecyclerView.setAdapter(adapter);
 
-        // Fetch parent name and child list
         if (auth.getCurrentUser() != null) {
             String parentId = auth.getCurrentUser().getUid();
             loadParentProfileData(parentId);
             listenToChildrenProfiles(parentId);
         }
 
-        // Child Navigation
         addChildBtn.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_parentHomeFragment_to_createProfileFragment)
         );
 
-        // Edit/delete pop-up
         editChildBtn.setOnClickListener(v -> showManageChildrenDialog());
     }
 
@@ -118,7 +114,6 @@ public class ParentHomeFragment extends Fragment {
             return;
         }
 
-        // Convert child options into string array
         String[] usernames = new String[childList.size()];
         for (int i = 0; i < childList.size(); i++) {
             usernames[i] = childList.get(i).getUsername();
@@ -170,9 +165,5 @@ public class ParentHomeFragment extends Fragment {
                 .show();
 
     }
-
-
-
-
 
 }

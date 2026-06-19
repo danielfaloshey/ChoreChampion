@@ -12,6 +12,7 @@
     <string name="done_button">Done</string>
     <string name="save_button">Save</string>
     <string name="back_button">Back</string>
+    <string name="select_button">Select!</string>
     <string name="add_child">+ Add child account</string>
     <string name="edit_child">- Edit child account</string>
     <string name="edit_avatar">Edit Avatar</string>
@@ -98,6 +99,8 @@
     <!-- Child Quests -->
     <string name="select_msg">Select to choose quest!</string>
     <string name="mark_done_msg">Click star to mark done!</string>
+    <string name="my_quests">My Quests</string>
+    <string name="quest_board">Quest Board</string>
 
     <!-- Child Shop -->
     <string name="current_gold_default">Current Gold: 500</string>
