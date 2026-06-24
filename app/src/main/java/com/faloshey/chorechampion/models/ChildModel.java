@@ -12,7 +12,7 @@ public class ChildModel {
     private String avatarName;
     private int gold;
     private int xp;
-    private List<String> rewards;
+    private List<ShopItemModel> rewards;
     private List<String> quests;
 
     @ServerTimestamp
@@ -31,7 +31,7 @@ public class ChildModel {
     }
 
     public ChildModel(String childId, String username, String avatarName, int gold, int xp,
-                      List<String> rewards, List<String> quests, Date createdAt) {
+                      List<ShopItemModel> rewards, List<String> quests, Date createdAt) {
         this.childId = childId;
         this.username = username;
         this.avatarName = avatarName;
@@ -57,8 +57,8 @@ public class ChildModel {
     public int getXp() { return xp; }
     public void setXp(int xp) { this.xp = xp; }
 
-    public List<String> getRewards() { return rewards; }
-    public void setRewards(List<String> rewards) { this.rewards = rewards; }
+    public List<ShopItemModel> getRewards() { return rewards; }
+    public void setRewards(List<ShopItemModel> rewards) { this.rewards = rewards; }
 
     public List<String> getQuests() { return quests; }
     public void setQuests(List<String> quests) { this.quests = quests; }

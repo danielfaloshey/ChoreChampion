@@ -71,6 +71,10 @@
     <string name="bought_by">Bought By:</string>
     <string name="bought_by_example">Child here</string>
 
+    <string name="shop_item_title_default">Shop Item</string>
+    <string name="shop_item_cost">100</string>
+    <string name="shop_item_desc_default">Shop item description goes here.</string>
+
     <!-- Parent Create Child Profile -->
     <string name="create_profile_title">Create Child Profile</string>
     <string name="profile_edit_text_hint">Enter child username</string>

@@ -75,7 +75,7 @@ public class CreateProfileFragment extends Fragment {
 
         childDocRef.set(newChild)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getContext(), childName + "has joined the realm!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), childName + " has joined the realm!", Toast.LENGTH_LONG).show();
 
                     NavController navController = Navigation.findNavController(view);
                     navController.popBackStack();
