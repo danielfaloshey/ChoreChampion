@@ -46,7 +46,7 @@ public class ChildQuestAdapter extends RecyclerView.Adapter<ChildQuestAdapter.Vi
         Context context = holder.itemView.getContext();
 
         holder.titleText.setText(quest.getTitle());
-        holder.goldText.setText(String.valueOf(quest.getGoldReward()));
+        holder.goldText.setText(quest.getGoldReward() + " 🪙");
         holder.descText.setText(quest.getDescription());
 
         if (position == selectedPosition) {

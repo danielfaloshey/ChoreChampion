@@ -132,7 +132,7 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
 
     @SuppressLint("SetTextI18n")
     private void updateGoldDisplay() {
-        currentGoldLabel.setText("Current Gold: " + currentChildGold + " G");
+        currentGoldLabel.setText("Current Gold: " + currentChildGold + " 🪙");
     }
 
     private void purchaseItemFromShop(ShopItemModel item) {

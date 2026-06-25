@@ -44,7 +44,7 @@ public class ParentShopAdapter extends RecyclerView.Adapter<ParentShopAdapter.Sh
         Context context = holder.itemView.getContext();
 
         holder.titleText.setText(item.getTitle());
-        holder.costText.setText(String.valueOf(item.getCost()));
+        holder.costText.setText(item.getCost() + " 🪙");
         holder.descriptionText.setText(item.getDescription());
 
         if (position == selectedPosition) {

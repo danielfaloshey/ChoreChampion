@@ -67,7 +67,7 @@
                     android:layout_gravity="center"
                     android:text="@string/username_label"
                     android:fontFamily="@font/macondo"
-                    android:textSize="24sp"
+                    android:textSize="32sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_marginTop="16dp"/>

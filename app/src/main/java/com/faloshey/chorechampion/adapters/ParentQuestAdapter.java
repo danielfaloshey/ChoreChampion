@@ -46,7 +46,7 @@ public class ParentQuestAdapter extends RecyclerView.Adapter<ParentQuestAdapter.
         Context context = holder.itemView.getContext();
 
         holder.titleText.setText(quest.getTitle());
-        holder.goldAmountText.setText(String.valueOf(quest.getGoldReward()));
+        holder.goldAmountText.setText(quest.getGoldReward() + " 🪙");
         holder.descriptionText.setText(quest.getDescription());
 
         if (quest.getAssignedChildName() != null && !quest.getAssignedChildName().isEmpty()) {

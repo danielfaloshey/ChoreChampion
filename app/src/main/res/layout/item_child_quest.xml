@@ -57,14 +57,6 @@
                     android:textSize="22sp"
                     tools:ignore="TextContrastCheck"
                     tools:text="@string/quest_gold_amount_default" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/irishgrover_regular"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    tools:text="@string/gold" />
             </LinearLayout>
         </RelativeLayout>
 
