@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.fragments.parent;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.InputType;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +39,7 @@ public class ParentShopFragment extends Fragment implements ParentShopAdapter.On
     private ParentShopAdapter shopAdapter;
     private MaterialButton addBtn;
     private MaterialButton editBtn;
+    private MaterialButton parentShopInfoBtn;
 
     private final List<ShopItemModel> shopItemList = new ArrayList<>();
     private ListenerRegistration shopListener;
@@ -60,12 +63,14 @@ public class ParentShopFragment extends Fragment implements ParentShopAdapter.On
         shopRecyclerView = view.findViewById(R.id.parent_shop_grid);
         addBtn = view.findViewById(R.id.shop_add_btn);
         editBtn = view.findViewById(R.id.shop_edit_btn);
+        parentShopInfoBtn = view.findViewById(R.id.parent_shop_info);
 
         shopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         shopAdapter = new ParentShopAdapter(shopItemList, this);
         shopRecyclerView.setAdapter(shopAdapter);
 
         addBtn.setOnClickListener(v -> showShopDialog(null));
+        parentShopInfoBtn.setOnClickListener(v -> showShopInfoDialog());
         editBtn.setOnClickListener(v -> {
             if (selectedShopItem != null) {
                 showShopDialog(selectedShopItem);
@@ -160,6 +165,31 @@ public class ParentShopFragment extends Fragment implements ParentShopAdapter.On
                     .addOnFailureListener(e -> Toast.makeText(getContext(), "Sync failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         });
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showShopInfoDialog() {
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_info_popup, null);
+
+        TextView title = dialogView.findViewById(R.id.info_title);
+        TextView message = dialogView.findViewById(R.id.info_message);
+        MaterialButton closeBtn = dialogView.findViewById(R.id.info_close_btn);
+
+        title.setText("Shop Management");
+        message.setText("• Add New Shop Item: Click Add, enter item information. \n\n" +
+                "• Edit/Delete Shop Item: Select item, click Edit \n\n " +
+                "• *After child purchases items, it will show up in the Inventory screen where you can mark as complete after you give them their reward.*");
+
+        AlertDialog infoDialog = new AlertDialog.Builder(getContext())
+                .setView(dialogView)
+                .create();
+
+        if (infoDialog.getWindow() != null) {
+            infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        infoDialog.show();
     }
 
     private void deleteItemFromVault(String itemId) {

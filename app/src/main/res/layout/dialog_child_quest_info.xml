@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="12dp"
+    app:strokeColor="#40FFFFFF"
+    app:strokeWidth="2dp"
+    app:cardBackgroundColor="@color/glassWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how_quests_work"
+            android:fontFamily="@font/irishgrover_regular"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_to_accept_quest"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp"/>
+
+                <ImageView
+                    android:id="@+id/select_quest_board"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/click_quest_board"
+                    android:importantForAccessibility="no"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/click_quest_board_tab"
+                    android:gravity="center"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_down_arrow"
+                    android:layout_marginBottom="8dp"
+                    android:importantForAccessibility="no"/>
+
+                <ImageView
+                    android:id="@+id/select_quest_from_board"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/select_quest"
+                    android:importantForAccessibility="no"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_quest"
+                    android:gravity="center"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_down_arrow"
+                    android:layout_marginBottom="8dp"
+                    android:importantForAccessibility="no"/>
+
+                <ImageView
+                    android:id="@+id/click_accept_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/accept_quest"
+                    android:importantForAccessibility="no"
+                    android:layout_marginBottom="16dp"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_to_turn_in_quest"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp"/>
+
+                <ImageView
+                    android:id="@+id/select_my_quests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/my_quests"
+                    android:importantForAccessibility="no"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/click_my_quests"
+                    android:gravity="center"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_down_arrow"
+                    android:layout_marginBottom="8dp"
+                    android:importantForAccessibility="no"/>
+
+                <ImageView
+                    android:id="@+id/select_my_quests_quest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/select_myquest"
+                    android:importantForAccessibility="no"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_quest"
+                    android:gravity="center"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_down_arrow"
+                    android:layout_marginBottom="8dp"
+                    android:importantForAccessibility="no"/>
+
+                <ImageView
+                    android:id="@+id/click_turn_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/turn_in_quest"
+                    android:importantForAccessibility="no"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/turn_in_quest"
+                    android:gravity="center"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/info_close_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="@string/awesome"
+            android:fontFamily="@font/irishgrover_regular"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/forest_green"/>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

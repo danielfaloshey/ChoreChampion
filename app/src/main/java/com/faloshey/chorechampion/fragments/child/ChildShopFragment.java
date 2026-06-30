@@ -1,6 +1,7 @@
 package com.faloshey.chorechampion.fragments.child;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
     private RecyclerView recyclerView;
     private ChildShopAdapter adapter;
     private MaterialButton buyBtn;
+    private MaterialButton childShopInfoBtn;
 
     private final List<ShopItemModel> masterItemList = new ArrayList<>();
     private ListenerRegistration shopListener;
@@ -71,6 +73,7 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
         currentGoldLabel = view.findViewById(R.id.current_gold_label);
         recyclerView = view.findViewById(R.id.child_shop_grid);
         buyBtn = view.findViewById(R.id.buy_btn);
+        childShopInfoBtn = view.findViewById(R.id.child_shop_info);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ChildShopAdapter(masterItemList, this);
@@ -83,6 +86,7 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
                 purchaseItemFromShop(selectedItem);
             }
         });
+        childShopInfoBtn.setOnClickListener(v -> showChildShopInfo());
 
         sessionViewModel.getActiveChild().observe(getViewLifecycleOwner(), child -> {
             if (child != null && auth.getCurrentUser() != null) {
@@ -179,6 +183,23 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
         }).addOnFailureListener(e -> {
             Toast.makeText(getContext(), "Transaction rolled back: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private void showChildShopInfo() {
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_child_shop_info, null);
+
+        MaterialButton closeBtn = dialogView.findViewById(R.id.info_close_btn);
+
+        AlertDialog infoDialog = new AlertDialog.Builder(getContext())
+                .setView(dialogView)
+                .create();
+
+        if (infoDialog.getWindow() != null) {
+            infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        infoDialog.show();
     }
 
     private void resetBuyButtonState() {

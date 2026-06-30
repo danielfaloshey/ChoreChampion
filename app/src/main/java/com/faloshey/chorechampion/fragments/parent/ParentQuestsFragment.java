@@ -47,6 +47,7 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
     private ParentQuestAdapter questAdapter;
     private MaterialButton addBtn;
     private MaterialButton editBtn;
+    private MaterialButton parentQuestInfoBtn;
     private TextView hintMsg;
 
     private final List<QuestModel> masterQuestList = new ArrayList<>();
@@ -76,6 +77,7 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
         questRecyclerView = view.findViewById(R.id.parent_quest_grid);
         addBtn = view.findViewById(R.id.quest_add_btn);
         editBtn = view.findViewById(R.id.quest_edit_btn);
+        parentQuestInfoBtn = view.findViewById(R.id.parent_quest_info);
         hintMsg = view.findViewById(R.id.parent_hint_msg);
 
         questRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -94,6 +96,7 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
         });
 
         addBtn.setOnClickListener(v -> showQuestDialog(null));
+        parentQuestInfoBtn.setOnClickListener(v -> showQuestInfoDialog());
         editBtn.setOnClickListener(v -> {
             if (activeSelectedQuest == null) return;
 
@@ -328,6 +331,31 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
                 .delete()
                 .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Quest discarded successfully.", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to discard quest.", Toast.LENGTH_SHORT).show());
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showQuestInfoDialog() {
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_info_popup, null);
+
+        TextView title = dialogView.findViewById(R.id.info_title);
+        TextView message = dialogView.findViewById(R.id.info_message);
+        MaterialButton closeBtn = dialogView.findViewById(R.id.info_close_btn);
+
+        title.setText("Quest Management");
+        message.setText("• Add Quest: Click Add, enter quest information, assign to child or leave unassigned. \n\n" +
+                "• Edit/Delete child quest: Select quest and press Edit. \n\n " +
+                "• After child completes quest: Click Need Approved Tab, select quest and click Approve Rewards.");
+
+        AlertDialog infoDialog = new AlertDialog.Builder(getContext())
+                .setView(dialogView)
+                .create();
+
+        if (infoDialog.getWindow() != null) {
+            infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        infoDialog.show();
     }
 
     @Override

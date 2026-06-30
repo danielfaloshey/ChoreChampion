@@ -1,6 +1,7 @@
 package com.faloshey.chorechampion.fragments.child;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
     private RecyclerView recyclerView;
     private ChildQuestAdapter adapter;
     private MaterialButton actionBtn;
+    private MaterialButton childQuestInfoBtn;
     private TextView hintText;
 
     private final List<QuestModel> masterQuestList = new ArrayList<>();
@@ -71,6 +73,7 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
         tabLayout = view.findViewById(R.id.child_quest_tabs);
         recyclerView = view.findViewById(R.id.child_quest_grid);
         actionBtn = view.findViewById(R.id.select_quests_btn);
+        childQuestInfoBtn = view.findViewById(R.id.child_quest_info);
         hintText = view.findViewById(R.id.child_quest_hint_msg);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -99,6 +102,7 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
                 claimQuest(selectedQuest);
             }
         });
+        childQuestInfoBtn.setOnClickListener(v -> showChildQuestInfo());
 
         sessionViewModel.getActiveChild().observe(getViewLifecycleOwner(), child -> {
             if (child != null && auth.getCurrentUser() != null) {
@@ -110,6 +114,23 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
             }
         });
 
+    }
+
+    private void showChildQuestInfo() {
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_child_quest_info, null);
+
+        MaterialButton closeBtn = dialogView.findViewById(R.id.info_close_btn);
+
+        AlertDialog infoDialog = new AlertDialog.Builder(getContext())
+                .setView(dialogView)
+                .create();
+
+        if (infoDialog.getWindow() != null) {
+            infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        infoDialog.show();
     }
 
     private void listenToQuestsPipeline() {

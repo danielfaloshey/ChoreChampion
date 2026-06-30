@@ -153,4 +153,23 @@
     <string name="home_nav_desc">Home</string>
     <string name="shop_nav_desc">Shop</string>
     <string name="settings_nav_desc">Settings</string>
+    <string name="quest_board_guide">Quest Board Guide</string>
+    <string name="info_message_default">Complete quests to fill your vault with 🪙! Once you save up enough gold, head over to the Shop to claim epic rewards.</string>
+    <string name="got_it_btn_text">Got It!</string>
+
+
+    <string name="how_quests_work">How Do Quests Work?</string>
+    <string name="how_to_accept_quest">Choose A Quest:</string>
+    <string name="click_quest_board_tab">Click Quest Board Tab!</string>
+    <string name="select_quest">Select a quest!</string>
+    <string name="press_accept_quest">Press Accept button!</string>
+    <string name="how_to_turn_in_quest">Turn In A Quest:</string>
+    <string name="click_my_quests">Click My Quests Tab!</string>
+    <string name="turn_in_quest">Press Turn In button!</string>
+    <string name="awesome">Awesome!</string>
+
+    <string name="how_does_the_shop_work">How Does The Shop Work?</string>
+    <string name="buying_your_reward">Buying from the Shop:</string>
+    <string name="select_item">Select item you want to buy!</string>
+    <string name="click_buy_btn">Click Buy button!</string>
 </resources>

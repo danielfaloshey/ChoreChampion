@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.fragments.parent;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ParentInventoryAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
 import com.faloshey.chorechampion.models.ShopItemModel;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -41,6 +44,7 @@ public class ParentInventoryFragment extends Fragment implements ParentInventory
     private Spinner childSelectorSpinner;
     private RecyclerView recyclerView;
     private ParentInventoryAdapter adapter;
+    private MaterialButton inventoryInfoBtn;
 
     private List<ChildModel> childrenList = new ArrayList<>();
     private final List<ShopItemModel> selectedChildInventory = new ArrayList<>();
@@ -70,9 +74,11 @@ public class ParentInventoryFragment extends Fragment implements ParentInventory
         childSelectorSpinner = view.findViewById(R.id.child_selector_spinner);
         recyclerView = view.findViewById(R.id.inventory_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        inventoryInfoBtn = view.findViewById(R.id.parent_inventory_info);
 
         adapter = new ParentInventoryAdapter(selectedChildInventory, this);
         recyclerView.setAdapter(adapter);
+        inventoryInfoBtn.setOnClickListener(v -> showInventoryInfo());
 
         if (auth.getCurrentUser() != null) {
             parentId = auth.getCurrentUser().getUid();
@@ -190,6 +196,31 @@ public class ParentInventoryFragment extends Fragment implements ParentInventory
                 .setPositiveButton("Fulfill & Delete", (dialog, which) -> deleteRewardFromDatabase(item))
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showInventoryInfo() {
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_info_popup, null);
+
+        TextView title = dialogView.findViewById(R.id.info_title);
+        TextView message = dialogView.findViewById(R.id.info_message);
+        MaterialButton closeBtn = dialogView.findViewById(R.id.info_close_btn);
+
+        title.setText("Inventory Management");
+        message.setText("• After child buys their reward, it is now time to give it to them in the real world. \n\n" +
+                "• Once that is complete, select which child inventory from the drop down menu. \n\n " +
+                "• Select the reward you gave them and long-press it to delete.");
+
+        AlertDialog infoDialog = new AlertDialog.Builder(getContext())
+                .setView(dialogView)
+                .create();
+
+        if (infoDialog.getWindow() != null) {
+            infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        infoDialog.show();
     }
 
     private void deleteRewardFromDatabase(ShopItemModel item) {

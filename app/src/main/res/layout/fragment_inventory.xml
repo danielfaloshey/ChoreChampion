@@ -47,7 +47,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="400dp"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="24dp"
             app:cardElevation="16dp"
@@ -82,4 +82,21 @@
             android:textSize="16sp"
             android:textColor="@color/white"/>
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/parent_inventory_info"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="0dp"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:backgroundTint="@color/glassWhite"
+        app:icon="@drawable/ic_info"
+        app:iconSize="24dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/white"
+        android:importantForAccessibility="no" />
 </FrameLayout>
