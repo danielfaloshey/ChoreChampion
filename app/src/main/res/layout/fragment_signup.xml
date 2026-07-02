@@ -184,5 +184,15 @@
             android:insetLeft="0dp"
             android:insetRight="0dp"
             style="@style/Widget.Material3.Button.Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/google_pin_msg"
+            android:textColor="@color/white"
+            android:fontFamily="@font/macondo"
+            android:textSize="12sp"
+            android:layout_marginTop="6dp"/>
+
     </LinearLayout>
 </ScrollView>

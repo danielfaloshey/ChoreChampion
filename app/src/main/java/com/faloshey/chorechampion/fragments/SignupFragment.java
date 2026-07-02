@@ -53,8 +53,10 @@ public class SignupFragment extends Fragment {
         passwordInput = view.findViewById(R.id.signup_password);
         confirmInput = view.findViewById(R.id.signup_confirm);
         pinInput = view.findViewById(R.id.create_pin);
+        MaterialButton googleSignup = view.findViewById(R.id.google_signup);
         MaterialButton createBtn = view.findViewById(R.id.create_btn);
 
+        googleSignup.setOnClickListener(v -> signUpWithGoogle());
         createBtn.setOnClickListener(v -> handleSignup());
 
     }
@@ -128,5 +130,118 @@ public class SignupFragment extends Fragment {
                 });
 
 
+    }
+
+    private void signUpWithGoogle() {
+        String pin = pinInput.getText() != null ? pinInput.getText().toString().trim() : "";
+        if (pin.length() != 4 || !pin.matches("\\d{4}")) {
+            Toast.makeText(getContext(), "Please create a 4-digit numeric PIN first before signing up with Google!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        androidx.credentials.CredentialManager credentialManager = androidx.credentials.CredentialManager.create(requireContext());
+
+        com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption googleIdOption =
+                new com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption.Builder(getString(R.string.default_web_client_id))
+                        .build();
+
+        androidx.credentials.GetCredentialRequest request = new androidx.credentials.GetCredentialRequest.Builder()
+                .addCredentialOption(googleIdOption)
+                .build();
+
+        android.os.Handler mainHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+
+        credentialManager.getCredentialAsync(
+                requireContext(),
+                request,
+                null,
+                mainHandler::post,
+                new androidx.credentials.CredentialManagerCallback<>() {
+
+                    @Override
+                    public void onResult(androidx.credentials.GetCredentialResponse result) {
+                        androidx.credentials.Credential credential = result.getCredential();
+
+                        if (credential instanceof androidx.credentials.CustomCredential &&
+                                credential.getType().equals(com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)) {
+
+                            try {
+                                com.google.android.libraries.identity.googleid.GoogleIdTokenCredential googleIdTokenCredential =
+                                        com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.createFrom(credential.getData());
+
+                                String idToken = googleIdTokenCredential.getIdToken();
+                                String googleDisplayName = googleIdTokenCredential.getDisplayName();
+
+                                com.google.firebase.auth.AuthCredential firebaseAuthCredential =
+                                        com.google.firebase.auth.GoogleAuthProvider.getCredential(idToken, null);
+
+                                authenticateFirebaseWithGoogle(firebaseAuthCredential, googleDisplayName, pin);
+
+                            } catch (IllegalArgumentException e) {
+                                android.util.Log.e("GOOGLE_AUTH", "Token decryption parsing failure", e);
+                                Toast.makeText(getContext(), "Google Token Parsing Error", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull androidx.credentials.exceptions.GetCredentialException e) {
+                        String errorString = e.getMessage() != null ? e.getMessage() : "";
+                        android.util.Log.e("GOOGLE_AUTH", "Credential system error message: " + errorString, e);
+
+                        if (errorString.contains("GetCredentialCancellationException") ||
+                                errorString.contains("cancel") ||
+                                e instanceof androidx.credentials.exceptions.GetCredentialCancellationException) {
+
+                            Toast.makeText(getContext(), "Sign up canceled.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Google signup unavailable right now.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+    }
+
+    private void authenticateFirebaseWithGoogle(com.google.firebase.auth.AuthCredential credential, String fallBackName, String securePin) {
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        String err = task.getException() != null ? task.getException().getMessage() : "Firebase handshake failed";
+                        Toast.makeText(getContext(), err, Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    com.google.firebase.auth.FirebaseUser user = auth.getCurrentUser();
+                    if (user == null) return;
+
+                    String parentId = user.getUid();
+                    String email = user.getEmail() != null ? user.getEmail() : "";
+
+                    String typedName = nameInput.getText() != null ? nameInput.getText().toString().trim() : "";
+                    String finalDisplayName = !android.text.TextUtils.isEmpty(typedName) ? typedName :
+                            (!android.text.TextUtils.isEmpty(fallBackName) ? fallBackName : "Chore Parent");
+
+                    Map<String, Object> parentDetails = new HashMap<>();
+                    parentDetails.put("displayName", finalDisplayName);
+                    parentDetails.put("email", email);
+                    parentDetails.put("pin", securePin);
+                    parentDetails.put("createdAt", com.google.firebase.firestore.FieldValue.serverTimestamp());
+
+                    Map<String, Object> rootDocument = new HashMap<>();
+                    rootDocument.put("parentData", parentDetails);
+
+                    db.collection("Users")
+                            .document(parentId)
+                            .set(rootDocument)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(getContext(), "Welcome aboard, " + finalDisplayName + "!", Toast.LENGTH_SHORT).show();
+                                if (getActivity() instanceof MainActivity) {
+                                    ((MainActivity) getActivity()).enterParentMode();
+                                }
+                            })
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(getContext(), "Auth complete, but database setup failed: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                            );
+                });
     }
 }

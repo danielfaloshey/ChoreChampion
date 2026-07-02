@@ -12,7 +12,20 @@
           "package_name": "com.faloshey.chorechampion"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "374457952852-4oectdspbbjudps5egcj2854mp8rfk3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faloshey.chorechampion",
+            "certificate_hash": "f36b67c91921310fff5f5af470b78a62d49575bd"
+          }
+        },
+        {
+          "client_id": "374457952852-96ee6fnon2410c15u0pkkak5v55al23l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyALiA4URODr1OEDwv7Yk_5XS1fRO-72coc"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374457952852-96ee6fnon2410c15u0pkkak5v55al23l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

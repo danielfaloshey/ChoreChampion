@@ -42,6 +42,8 @@
     <string name="signup_option">-- Sign Up With --</string>
     <string name="google_signup_desc">Google signup</string>
 
+    <string name="google_pin_msg">To sign up with Google, just create your PIN above first!</string>
+
     <!-- Parent Home -->
     <string name="champions_hall_title">Champions Hall</string>
     <string name="welcome_text">Welcome!,  </string>
