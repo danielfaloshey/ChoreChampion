@@ -105,6 +105,8 @@
     <string name="gold_label">Gold: 500</string>
     <string name="xp_label">XP: 900</string>
 
+    <string name="level_default">Level 1</string>
+
     <!-- Child Quests -->
     <string name="select_msg">Select to choose quest!</string>
     <string name="mark_done_msg">Click star to mark done!</string>

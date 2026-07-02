@@ -73,13 +73,37 @@
                     android:layout_marginTop="16dp"/>
 
                 <TextView
+                    android:id="@+id/child_level_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/level_default"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/macondo"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginTop="8dp"/>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/child_level_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="8dp"
+                    app:trackColor="?attr/colorSurfaceVariant"
+                    app:indicatorColor="@color/new_blue"/>
+
+                <TextView
                     android:id="@+id/gold_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/gold_label"
                     android:fontFamily="@font/macondo"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"/>
@@ -91,7 +115,7 @@
                     android:layout_gravity="center"
                     android:text="@string/xp_label"
                     android:fontFamily="@font/macondo"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"/>

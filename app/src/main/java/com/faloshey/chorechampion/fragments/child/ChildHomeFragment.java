@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.fragments.child;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.utils.LevelCalculator;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
@@ -31,6 +34,9 @@ public class ChildHomeFragment extends Fragment {
     private TextView goldText;
     private TextView xpText;
     private ImageView avatarImage;
+
+    private TextView levelText;
+    private LinearProgressIndicator levelProgressBar;
 
     public ChildHomeFragment() { }
 
@@ -54,6 +60,9 @@ public class ChildHomeFragment extends Fragment {
         goldText = view.findViewById(R.id.gold_label);
         xpText = view.findViewById(R.id.xp_label);
         avatarImage = view.findViewById(R.id.child_home_avatar);
+
+        levelText = view.findViewById(R.id.child_level_text);
+        levelProgressBar = view.findViewById(R.id.child_level_progress);
 
         MaterialButton editAvatarBtn = view.findViewById(R.id.edit_avatar_btn);
         MaterialButton exitBtn = view.findViewById(R.id.exit_btn);
@@ -82,6 +91,7 @@ public class ChildHomeFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void listenToChildUpdates(String parentId, String childId) {
         if (childProfileListener != null) {
             childProfileListener.remove();
@@ -104,6 +114,18 @@ public class ChildHomeFragment extends Fragment {
                             usernameText.setText(updatedChild.getUsername());
                             goldText.setText("Gold: " + updatedChild.getGold());
                             xpText.setText("XP: " + updatedChild.getXp());
+
+                            int totalXp = updatedChild.getXp();
+                            LevelCalculator.LevelData levelDetails = LevelCalculator.evaluate(totalXp);
+
+                            if (levelText != null) {
+                                levelText.setText("Level " + levelDetails.currentLevel);
+                            }
+
+                            if (levelProgressBar != null) {
+                                levelProgressBar.setMax(levelDetails.xpRequiredForNextLevel);
+                                levelProgressBar.setProgress(levelDetails.xpProgressInCurrentLevel);
+                            }
 
                             String savedAvatarName = updatedChild.getAvatarName();
 
