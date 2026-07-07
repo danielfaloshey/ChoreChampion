@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -214,8 +215,56 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
         db.collection("Users").document(currentParentId)
                 .collection("quests").document(quest.getQuestId())
                 .set(quest)
-                .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Quest submitted for parent approval!", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(aVoid -> showCelebrationDialog(quest.getGoldReward()))
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Completion report dropped.", Toast.LENGTH_SHORT).show());
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showCelebrationDialog(int goldEarned) {
+        if (getContext() == null) return;
+
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.reward_dialog, null);
+
+        TextView goldTxt = dialogView.findViewById(R.id.reward_dialog_gold);
+        goldTxt.setText("+" + goldEarned + " 🪙");
+
+        ImageView rewardGif = dialogView.findViewById(R.id.rewardIcon);
+        com.bumptech.glide.Glide.with(requireContext())
+                .asGif()
+                .load(R.drawable.crossed_swords)
+                .placeholder(R.drawable.crossed_swords)
+                .into(rewardGif);
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder builder =
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext());
+        builder.setView(dialogView);
+        builder.setCancelable(false);
+
+        androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
+
+        alertDialog.show();
+
+        nl.dionsegijn.konfetti.xml.KonfettiView konfettiView = dialogView.findViewById(R.id.konfetti_view);
+        java.util.List<Integer> celebrationColors = java.util.Arrays.asList(0xFFFDD835, 0xFFE53935, 0xFF1E88E5, 0xFF43A047);
+
+        nl.dionsegijn.konfetti.core.emitter.EmitterConfig emitterConfig =
+                new nl.dionsegijn.konfetti.core.emitter.Emitter(5, java.util.concurrent.TimeUnit.SECONDS).perSecond(100);
+
+        nl.dionsegijn.konfetti.core.Party party = new nl.dionsegijn.konfetti.core.PartyFactory(emitterConfig)
+                .colors(celebrationColors)
+                .angle(90)
+                .spread(360)
+                .setSpeedBetween(1f, 15f)
+                .position(new nl.dionsegijn.konfetti.core.Position.Relative(0.0, 0.0).between(new nl.dionsegijn.konfetti.core.Position.Relative(1.0, 0.0))) // Rain down from the entire horizontal ceiling
+                .build();
+
+        konfettiView.start(party);
+
+        dialogView.findViewById(R.id.close_reward_dialog).setOnClickListener(v -> alertDialog.dismiss());
     }
 
     private void resetActionButtonState() {

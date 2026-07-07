@@ -176,4 +176,13 @@
     <string name="buying_your_reward">Buying from the Shop:</string>
     <string name="select_item">Select item you want to buy!</string>
     <string name="click_buy_btn">Click Buy button!</string>
+
+    <!-- Misc -->
+    <string name="congrats_title">Congratulations!</string>
+    <string name="rewards_gold">+100 G</string>
+
+    <string name="purchase_made">Purchase Complete!</string>
+    <string name="enjoy_text">Enjoy!</string>
+    <string name="thank_you_btn">Thank you!</string>
+
 </resources>

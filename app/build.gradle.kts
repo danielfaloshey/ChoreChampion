@@ -38,6 +38,11 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.lottie)
+    implementation(libs.konfetti.xml)
+
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
     implementation(libs.credentials)
     implementation(libs.androidx.credentials.play.services.auth)

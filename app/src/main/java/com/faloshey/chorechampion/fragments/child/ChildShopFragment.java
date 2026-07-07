@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -139,6 +140,7 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
         currentGoldLabel.setText("Current Gold: " + currentChildGold + " 🪙");
     }
 
+    @SuppressWarnings("DataFlowIssue")
     private void purchaseItemFromShop(ShopItemModel item) {
         if (currentChildGold < item.getCost()) {
             Toast.makeText(getContext(), "You don't have enough gold for this reward!", Toast.LENGTH_SHORT).show();
@@ -178,11 +180,66 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
 
             return null;
         }).addOnSuccessListener(aVoid -> {
-            Toast.makeText(getContext(), "Purchase complete! 🎉", Toast.LENGTH_SHORT).show();
+            showPurchaseCompleteDialog();
             onItemCleared();
-        }).addOnFailureListener(e -> {
-            Toast.makeText(getContext(), "Transaction rolled back: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+        }).addOnFailureListener(e -> Toast.makeText(getContext(), "Transaction rolled back: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+
+    private void showPurchaseCompleteDialog() {
+        if (getContext() == null) return;
+
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.shop_dialog, null);
+
+        ImageView treasureGif = dialogView.findViewById(R.id.treasureIcon);
+        com.bumptech.glide.Glide.with(requireContext())
+                .asGif()
+                .load(R.drawable.treasure)
+                .placeholder(R.drawable.treasure)
+                .into(treasureGif);
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder builder =
+                new com.google.android.material.dialog.MaterialAlertDialogBuilder(getContext());
+        builder.setView(dialogView);
+        builder.setCancelable(false);
+
+        androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
+
+        alertDialog.show();
+
+        nl.dionsegijn.konfetti.xml.KonfettiView konfettiView = dialogView.findViewById(R.id.konfetti_view);
+
+        java.util.List<Integer> shopColors = java.util.Arrays.asList(0xFFFFD700, 0xFF00E676, 0xFFFF4081, 0xFF7C4DFF);
+
+        java.util.List<nl.dionsegijn.konfetti.core.models.Shape> circleShapes =
+                java.util.Collections.singletonList(nl.dionsegijn.konfetti.core.models.Shape.Circle.INSTANCE);
+
+        nl.dionsegijn.konfetti.core.emitter.EmitterConfig burstEmitter =
+                new nl.dionsegijn.konfetti.core.emitter.Emitter(100, java.util.concurrent.TimeUnit.MILLISECONDS).max(100);
+
+        nl.dionsegijn.konfetti.core.Party leftCannon = new nl.dionsegijn.konfetti.core.PartyFactory(burstEmitter)
+                .colors(shopColors)
+                .shapes(circleShapes)
+                .angle(315)
+                .spread(45)
+                .setSpeedBetween(15f, 30f)
+                .position(new nl.dionsegijn.konfetti.core.Position.Relative(0.0, 1.0))
+                .build();
+
+        nl.dionsegijn.konfetti.core.Party rightCannon = new nl.dionsegijn.konfetti.core.PartyFactory(burstEmitter)
+                .colors(shopColors)
+                .shapes(circleShapes)
+                .angle(225)
+                .spread(45)
+                .setSpeedBetween(15f, 30f)
+                .position(new nl.dionsegijn.konfetti.core.Position.Relative(1.0, 1.0))
+                .build();
+
+        konfettiView.start(java.util.Arrays.asList(leftCannon, rightCannon));
+        dialogView.findViewById(R.id.close_shop_dialog).setOnClickListener(v -> alertDialog.dismiss());
     }
 
     private void showChildShopInfo() {

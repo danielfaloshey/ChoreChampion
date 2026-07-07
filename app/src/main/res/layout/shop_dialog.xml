@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="24dp">
+
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfetti_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="12dp"
+        app:strokeColor="@color/new_blue"
+        app:strokeWidth="4dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/purchase_complete_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/purchase_made"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:fontFamily="@font/irishgrover_regular"
+                android:shadowColor="@color/new_blue"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"/>
+
+            <ImageView
+                android:id="@+id/treasureIcon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/treasure"
+                android:importantForAccessibility="no"/>
+
+            <TextView
+                android:id="@+id/enjoy_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enjoy_text"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:fontFamily="@font/irishgrover_regular"
+                android:shadowColor="@color/forest_green"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/close_shop_dialog"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/forest_green"
+                android:fontFamily="@font/irishgrover_regular"
+                android:text="@string/thank_you_btn"
+                android:textSize="18sp"
+                app:cornerRadius="8dp"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>
