@@ -10,31 +10,37 @@
         android:id="@+id/dialog_quest_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:hint="@string/dialog_title"
         android:importantForAutofill="no"
-        android:minHeight="48dp"
         android:inputType="textCapSentences"
-        android:layout_marginBottom="12dp"/>
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        tools:ignore="VisualLintTextFieldSize,VisualLintSystemUi" />
 
     <EditText
         android:id="@+id/dialog_quest_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
+        android:layout_marginBottom="12dp"
         android:hint="@string/dialog_description"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:layout_marginBottom="12dp"/>
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/dialog_quest_gold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:importantForAutofill="no"
-        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/dialog_gold"
+        android:importantForAutofill="no"
         android:inputType="number"
-        android:layout_marginBottom="16dp"/>
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <TextView
         android:layout_width="wrap_content"

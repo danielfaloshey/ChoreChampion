@@ -94,7 +94,7 @@
                     app:trackCornerRadius="4dp"
                     app:trackThickness="8dp"
                     app:trackColor="?attr/colorSurfaceVariant"
-                    app:indicatorColor="@color/new_blue"/>
+                    app:indicatorColor="@color/new_blue" />
 
                 <TextView
                     android:id="@+id/gold_label"
@@ -132,7 +132,9 @@
                     android:fontFamily="@font/macondo"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:backgroundTint="@color/forest_green"/>
+                    android:elevation="12dp"
+                    android:backgroundTint="@color/forest_green"
+                    android:stateListAnimator="@animator/button_pop"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -145,10 +147,12 @@
             android:layout_marginStart="24dp"
             android:text="@string/exit_button"
             android:textSize="16sp"
+            android:elevation="12dp"
             app:cornerRadius="4dp"
             android:textStyle="bold"
             android:fontFamily="@font/macondo"
-            android:backgroundTint="@color/red"/>
+            android:backgroundTint="@color/red"
+            android:stateListAnimator="@animator/button_pop"/>
     </LinearLayout>
 
 </FrameLayout>

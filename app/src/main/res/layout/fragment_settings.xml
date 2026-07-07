@@ -182,7 +182,9 @@
                     android:fontFamily="@font/irishgrover_regular"
                     android:textSize="16sp"
                     android:backgroundTint="@color/red"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:elevation="12dp"
+                    android:stateListAnimator="@animator/button_pop"/>
 
                 <TextView
                     android:id="@+id/coppa_link"
@@ -213,6 +215,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
                 app:cornerRadius="4dp"
+                android:elevation="12dp"
+                android:stateListAnimator="@animator/button_pop"
                 android:text="@string/save_button"
                 android:backgroundTint="@color/forest_green"
                 android:fontFamily="@font/irishgrover_regular"
@@ -226,6 +230,8 @@
                 android:layout_marginStart="8dp"
                 app:cornerRadius="4dp"
                 android:layout_marginEnd="16dp"
+                android:elevation="12dp"
+                android:stateListAnimator="@animator/button_pop"
                 android:text="@string/log_out_button"
                 android:backgroundTint="@color/red"
                 android:fontFamily="@font/irishgrover_regular"

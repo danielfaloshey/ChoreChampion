@@ -76,6 +76,8 @@
                 android:text="@string/thank_you_btn"
                 android:textSize="18sp"
                 app:cornerRadius="8dp"
+                android:elevation="12dp"
+                android:stateListAnimator="@animator/button_pop"
                 tools:ignore="TextContrastCheck" />
 
         </LinearLayout>

@@ -67,7 +67,8 @@
             android:padding="30dp"
             android:fontFamily="@font/macondo"
             android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            tools:ignore="VisualLintLongText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_profile_btn"
@@ -80,6 +81,7 @@
             android:fontFamily="@font/irishgrover_regular"
             android:text="@string/onward_button"
             android:textSize="24sp"
+            android:stateListAnimator="@animator/button_pop"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>

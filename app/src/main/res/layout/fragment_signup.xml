@@ -156,7 +156,9 @@
             android:text="@string/create_button"
             android:fontFamily="@font/irishgrover_regular"
             android:textAllCaps="false"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:elevation="12dp"
+            android:stateListAnimator="@animator/button_pop"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -183,6 +185,8 @@
             android:insetBottom="0dp"
             android:insetLeft="0dp"
             android:insetRight="0dp"
+            android:elevation="12dp"
+            android:stateListAnimator="@animator/button_pop"
             style="@style/Widget.Material3.Button.Icon"/>
 
         <TextView
@@ -192,7 +196,8 @@
             android:textColor="@color/white"
             android:fontFamily="@font/macondo"
             android:textSize="12sp"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="6dp"
+            />
 
     </LinearLayout>
 </ScrollView>

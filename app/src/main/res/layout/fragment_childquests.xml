@@ -45,7 +45,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/child_quest_tabs"
@@ -102,6 +103,8 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:elevation="12dp"
+            android:stateListAnimator="@animator/button_pop"
             app:cornerRadius="4dp"
             tools:ignore="TextContrastCheck" />
 
@@ -122,5 +125,6 @@
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconTint="@color/navy_blue"
-        android:importantForAccessibility="no" />
+        android:importantForAccessibility="no"
+        tools:ignore="VisualLintSystemUi" />
 </FrameLayout>

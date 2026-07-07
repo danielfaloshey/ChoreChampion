@@ -32,7 +32,9 @@
             android:text="@string/login_button"
             android:fontFamily="@font/irishgrover_regular"
             android:textAllCaps="false"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:elevation="12dp"
+            android:stateListAnimator="@animator/button_pop"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup_btn_initial"
@@ -43,7 +45,9 @@
             android:text="@string/signup_button"
             android:fontFamily="@font/irishgrover_regular"
             android:textAllCaps="false"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:elevation="12dp"
+            android:stateListAnimator="@animator/button_pop"/>
     </LinearLayout>
 
 

@@ -72,8 +72,10 @@
             android:fontFamily="@font/irishgrover_regular"
             android:text="@string/done_button"
             android:textColor="@color/white"
+            android:elevation="12dp"
             android:textSize="24sp"
             app:cornerRadius="4dp"
+            android:stateListAnimator="@animator/button_pop"
             tools:ignore="TextContrastCheck" />
 
         <TextView

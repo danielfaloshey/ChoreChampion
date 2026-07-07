@@ -13,8 +13,8 @@
     <string name="save_button">Save</string>
     <string name="back_button">Back</string>
     <string name="select_button">Select!</string>
-    <string name="add_child">+ Add child account</string>
-    <string name="edit_child">- Edit child account</string>
+    <string name="add_child">Add child account</string>
+    <string name="edit_child">Edit child account</string>
     <string name="edit_avatar">Edit Avatar</string>
     <string name="exit_button">Exit to parent mode</string>
 

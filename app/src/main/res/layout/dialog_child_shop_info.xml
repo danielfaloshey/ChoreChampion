@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="500dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -108,12 +109,15 @@
             android:id="@+id/info_close_btn"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="@string/awesome"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textSize="18sp"
             android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/forest_green"
+            android:fontFamily="@font/irishgrover_regular"
+            android:stateListAnimator="@animator/button_pop"
+            android:elevation="12dp"
+            android:text="@string/awesome"
+            android:textSize="18sp"
             app:cornerRadius="8dp"
-            android:backgroundTint="@color/forest_green"/>
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

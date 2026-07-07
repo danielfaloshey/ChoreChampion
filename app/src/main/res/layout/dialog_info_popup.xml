@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="24dp"
@@ -43,10 +44,12 @@
             android:id="@+id/info_close_btn"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="@string/got_it_btn_text"
+            android:backgroundTint="@color/forest_green"
             android:fontFamily="@font/irishgrover_regular"
+            android:stateListAnimator="@animator/button_pop"
+            android:text="@string/got_it_btn_text"
             android:textSize="18sp"
             app:cornerRadius="8dp"
-            android:backgroundTint="@color/forest_green"/>
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
