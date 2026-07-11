@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
-    <!-- TODO: if clipping with nav bar, wrap linear in nested scroll view -->
     <ImageView
         android:id="@+id/settings_background"
         android:layout_width="match_parent"
@@ -32,12 +31,17 @@
             android:text="@string/settings_title"
             android:fontFamily="@font/irishgrover_regular"
             android:textSize="38sp"
-            android:textColor="@color/black"/>
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:shadowColor="@color/white"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"/>
 
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="600dp"
             app:cardUseCompatPadding="true"
             app:cardElevation="16dp"
             app:strokeColor="#40FFFFFF"
@@ -77,6 +81,25 @@
                         android:textAppearance="@style/CustomInputTextAppearance"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_name_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/save_name"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/macondo"
+                    app:cornerRadius="4dp"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"
+                    android:elevation="12dp"
+                    android:stateListAnimator="@animator/button_pop"
+                    android:backgroundTint="@color/forest_green"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="300dp"
@@ -99,8 +122,28 @@
                         android:inputType="number"
                         android:textAppearance="@style/CustomInputTextAppearance"
                         android:textColorHint="#757575"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:ignore="TextContrastCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_pin_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/save_pin"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/macondo"
+                    app:cornerRadius="4dp"
+                    android:elevation="12dp"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"
+                    android:stateListAnimator="@animator/button_pop"
+                    android:backgroundTint="@color/forest_green"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +153,13 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/macondo"/>
+                    android:elevation="12dp"
+                    android:fontFamily="@font/macondo"
+                    android:textAllCaps="true"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"/>
 
                 <SeekBar
                     android:id="@+id/music_volume_seekbar"
@@ -127,120 +176,82 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/edit_child_profile"
-                    android:layout_marginTop="24dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:text="@string/coppa_title"
                     android:textStyle="bold"
-                    android:fontFamily="@font/macondo"/>
-
-                <Spinner
-                    android:id="@+id/edit_child_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:spinnerMode="dropdown"
-                    android:padding="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/spinner_background"
-                    android:popupBackground="@drawable/spinner_popup_background"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    android:layout_marginTop="16dp"
-                    app:boxBackgroundColor="@color/white"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_username"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/edit_username"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textAppearance="@style/CustomInputTextAppearance"
-                        android:textColorHint="#757575"
-                        android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/delete_child_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="4dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/delete_account_button"
-                    android:fontFamily="@font/irishgrover_regular"
-                    android:textSize="16sp"
-                    android:backgroundTint="@color/red"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/macondo"
                     android:textColor="@color/black"
-                    android:elevation="12dp"
-                    android:stateListAnimator="@animator/button_pop"/>
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:shadowColor="@color/white"
+                    android:textSize="16sp"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"/>
 
                 <TextView
                     android:id="@+id/coppa_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/coppa_link"
-                    android:gravity="center"
+                    android:layout_marginBottom="16dp"
                     android:autoLink="web"
-                    android:textStyle="bold"
                     android:fontFamily="@font/macondo"
-                    android:layout_marginBottom="16dp" />
+                    android:gravity="center"
+                    android:text="@string/coppa_link"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music_credit_title"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/macondo"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:shadowColor="@color/white"
+                    android:textSize="16sp"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"/>
+
+                <TextView
+                    android:id="@+id/music_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="36dp"
+                    android:text="@string/music_credit"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/macondo"
+                    android:textSize="16sp" />
 
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/settings_save_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                app:cornerRadius="4dp"
-                android:elevation="12dp"
-                android:stateListAnimator="@animator/button_pop"
-                android:text="@string/save_button"
-                android:backgroundTint="@color/forest_green"
-                android:fontFamily="@font/irishgrover_regular"
-                android:textSize="24sp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/logout_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                app:cornerRadius="4dp"
-                android:layout_marginEnd="16dp"
-                android:elevation="12dp"
-                android:stateListAnimator="@animator/button_pop"
-                android:text="@string/log_out_button"
-                android:backgroundTint="@color/red"
-                android:fontFamily="@font/irishgrover_regular"
-                android:textSize="24sp"/>
-
-
-        </LinearLayout>
-
-
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/log_out_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/log_out_button"
+        android:textStyle="bold"
+        android:fontFamily="@font/macondo"
+        android:textSize="24sp"
+        android:backgroundTint="@color/red"
+        app:cornerRadius="4dp"
+        android:elevation="12dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="6"
+        android:stateListAnimator="@animator/button_pop"/>
 
 </FrameLayout>

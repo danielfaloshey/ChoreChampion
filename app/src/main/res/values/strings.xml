@@ -17,6 +17,8 @@
     <string name="edit_child">Edit child account</string>
     <string name="edit_avatar">Edit Avatar</string>
     <string name="exit_button">Exit to parent mode</string>
+    <string name="save_name">Save Name</string>
+    <string name="save_pin">Save PIN</string>
 
     <!-- Nav Bar Buttons -->
     <string name="inventory_nav">Inventory</string>
@@ -98,7 +100,20 @@
     <string name="delete_account_button">Delete child account</string>
     <string name="log_out_button">Log out</string>
     <string name="coppa_link">https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa</string>
+    <string name="music_credit">Theme music credit: Medieval Theme by Maarten Schellekens via FreeMusicArchive</string>
+    <string name="coppa_title">COPPA Link:</string>
+    <string name="music_credit_title">Music Credit:</string>
+    <string name="notifications_on_off">Notifications On/Off</string>
 
+    <!-- Notifications -->
+    <string name="notifications_title">Kingdom Logs</string>
+    <string name="notifs_subtitle">Swipe left of right to clear single alerts</string>
+    <string name="empty_notifs">All quiet in the realm!\nNo active notifications.</string>
+    <string name="clear_button">Clear All</string>
+    <string name="exit_notifs">Close</string>
+    <string name="default_username_notifs">childUsername</string>
+    <string name="default_quest_notifs">Completed Quest: Clean bedroom</string>
+    <string name="notification_type">Notification Type</string>
 
     <!-- Child Home -->
     <string name="username_label">Username</string>
@@ -184,5 +199,7 @@
     <string name="purchase_made">Purchase Complete!</string>
     <string name="enjoy_text">Enjoy!</string>
     <string name="thank_you_btn">Thank you!</string>
+
+
 
 </resources>

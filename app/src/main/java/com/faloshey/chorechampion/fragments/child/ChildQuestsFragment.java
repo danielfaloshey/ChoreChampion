@@ -3,6 +3,7 @@ package com.faloshey.chorechampion.fragments.child;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildQuestAdapter;
+import com.faloshey.chorechampion.models.NotificationModel;
 import com.faloshey.chorechampion.models.QuestModel;
 import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
@@ -223,7 +226,14 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
         db.collection("Users").document(currentParentId)
                 .collection("quests").document(quest.getQuestId())
                 .set(quest)
-                .addOnSuccessListener(aVoid -> showCelebrationDialog(quest.getGoldReward()))
+                .addOnSuccessListener(aVoid -> {
+                    createNotification(
+                            quest.getAssignedChildName(),
+                            "Completed Quest: " + quest.getTitle()
+                    );
+
+                    showCelebrationDialog(quest.getGoldReward());
+                })
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Completion report dropped.", Toast.LENGTH_SHORT).show());
     }
 
@@ -299,6 +309,25 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
         if (questsListener != null) {
             questsListener.remove();
         }
+    }
+
+    private void createNotification(String username, String actionText) {
+        DocumentReference newNotificationRef = db.collection("Users").document(currentParentId)
+                .collection("notifications").document();
+
+        String notificationId = newNotificationRef.getId();
+        long currentTimestamp = System.currentTimeMillis();
+
+        NotificationModel newNotification = new NotificationModel(
+                notificationId,
+                username,
+                actionText,
+                "quest_complete",
+                currentTimestamp
+        );
+
+        newNotificationRef.set(newNotification)
+                .addOnFailureListener(e -> Log.e("NotificationError", "Failed to compile log track", e));
     }
 
 

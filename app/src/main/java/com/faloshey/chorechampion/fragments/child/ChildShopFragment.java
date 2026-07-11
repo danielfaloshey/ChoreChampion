@@ -3,6 +3,7 @@ package com.faloshey.chorechampion.fragments.child;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildShopAdapter;
+import com.faloshey.chorechampion.models.NotificationModel;
 import com.faloshey.chorechampion.models.ShopItemModel;
 import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
@@ -99,7 +101,6 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
             if (child != null && auth.getCurrentUser() != null) {
                 currentParentId = auth.getCurrentUser().getUid();
                 currentChildId = child.getChildId();
-
                 startShopInventoryListener();
                 startChildProfileListener();
             }
@@ -169,23 +170,29 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
             DocumentSnapshot childSnap = transaction.get(childRef);
             if (!childSnap.exists()) return null;
 
+            String verifiedChildName = childSnap.getString("username");
+
             long liveGold = childSnap.getLong("gold") != null ? childSnap.getLong("gold") : 0;
 
             if (liveGold >= item.getCost()) {
                 long updatedGold = liveGold - item.getCost();
-
                 transaction.update(childRef, "gold", updatedGold);
-
                 transaction.update(childRef, "rewards", FieldValue.arrayUnion(serializedItemMap));
-
                 transaction.delete(itemStoreRef);
 
             } else {
                 throw new RuntimeException("Insufficient gold balance inside database verification layer.");
             }
 
-            return null;
-        }).addOnSuccessListener(aVoid -> {
+            return verifiedChildName;
+        }).addOnSuccessListener(childNameResult -> {
+
+            String finalName = (childNameResult != null) ? childNameResult : "A child";
+
+            createNotification(
+                    finalName,
+                    "Purchased: " + item.getTitle()
+            );
             showPurchaseCompleteDialog();
             onItemCleared();
         }).addOnFailureListener(e -> Toast.makeText(getContext(), "Transaction rolled back: " + e.getMessage(), Toast.LENGTH_SHORT).show());
@@ -288,6 +295,26 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
         super.onDestroyView();
         if (shopListener != null) shopListener.remove();
         if (childProfileListener != null) childProfileListener.remove();
+    }
+
+    private void createNotification(String username, String actionText) {
+
+        DocumentReference newNotificationRef = db.collection("Users").document(currentParentId)
+                .collection("notifications").document();
+
+        String notificationId = newNotificationRef.getId();
+        long currentTimestamp = System.currentTimeMillis();
+
+        NotificationModel newNotification = new NotificationModel(
+                notificationId,
+                username,
+                actionText,
+                "purchase_complete",
+                currentTimestamp
+        );
+
+        newNotificationRef.set(newNotification)
+                .addOnFailureListener(e -> Log.e("NotificationError", "Failed to compile log track", e));
     }
 
 }

@@ -2,6 +2,7 @@ package com.faloshey.chorechampion.fragments.parent;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +15,30 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildGridAdapter;
+import com.faloshey.chorechampion.adapters.NotificationsAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.models.NotificationModel;
 import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class ParentHomeFragment extends Fragment {
 
     private FirebaseAuth auth;
@@ -39,6 +48,9 @@ public class ParentHomeFragment extends Fragment {
     private RecyclerView childRecyclerView;
     private ChildGridAdapter adapter;
     private List<ChildModel> childList;
+    private MaterialButton notifsBtn;
+    private com.google.android.material.badge.BadgeDrawable notificationBadge;
+    private ListenerRegistration liveDialogNotificationListener;
 
     public ParentHomeFragment() { }
 
@@ -60,6 +72,7 @@ public class ParentHomeFragment extends Fragment {
         childRecyclerView = view.findViewById(R.id.child_account_grid);
         MaterialButton addChildBtn = view.findViewById(R.id.add_child_btn);
         MaterialButton editChildBtn = view.findViewById(R.id.edit_child_btn);
+        notifsBtn = view.findViewById(R.id.notifications_button);
 
         childRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         childList = new ArrayList<>();
@@ -76,7 +89,29 @@ public class ParentHomeFragment extends Fragment {
             String parentId = auth.getCurrentUser().getUid();
             loadParentProfileData(parentId);
             listenToChildrenProfiles(parentId);
+
+            startNotificationCountListener(parentId);
         }
+
+        notifsBtn.post(() -> {
+            notificationBadge = com.google.android.material.badge.BadgeDrawable.create(requireContext());
+            com.google.android.material.badge.BadgeUtils.attachBadgeDrawable(
+                    notificationBadge,
+                    notifsBtn,
+                    null
+            );
+
+            notificationBadge.setBackgroundColor(android.graphics.Color.parseColor("#E53935"));
+            notificationBadge.setBadgeTextColor(android.graphics.Color.WHITE);
+            notificationBadge.setVisible(false);
+        });
+
+        notifsBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            if (auth.getCurrentUser() != null) {
+                showNotificationsDialog(auth.getCurrentUser().getUid());
+            }
+        });
 
         addChildBtn.setOnClickListener(v -> {
             AudioManager.getInstance().playSound("cork_pop");
@@ -169,6 +204,140 @@ public class ParentHomeFragment extends Fragment {
                         .show())
                 .setNeutralButton("Cancel", null)
                 .show();
+
+    }
+
+    private void startNotificationCountListener(String parentUid) {
+        FirebaseFirestore.getInstance().collection("Users").document(parentUid)
+                .collection("notifications")
+                .addSnapshotListener((snapshots, error) -> {
+                    if (error != null || snapshots == null) return;
+
+                    int pendingAlertsCount = snapshots.size();
+
+                    if (pendingAlertsCount > 0) {
+                        notificationBadge.setNumber(pendingAlertsCount);
+                        notificationBadge.setVisible(true);
+                    } else {
+
+                        notificationBadge.setVisible(false);
+                    }
+                });
+    }
+
+    private void showNotificationsDialog(String parentUid) {
+        if (getContext() == null) return;
+
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.notification_dialog, null);
+        RecyclerView dialogRecycler = dialogView.findViewById(R.id.notifications_recycler);
+        TextView txtEmptyState = dialogView.findViewById(R.id.empty_notifications_text);
+        MaterialButton btnClearAll = dialogView.findViewById(R.id.btn_clear_all);
+        MaterialButton btnClose = dialogView.findViewById(R.id.btn_close_notifs);
+
+        List<NotificationModel> dialogNotificationsList = new ArrayList<>();
+        NotificationsAdapter dialogAdapter = new NotificationsAdapter(getContext(), dialogNotificationsList);
+        dialogRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        dialogRecycler.setAdapter(dialogAdapter);
+
+        AlertDialog alertLayout = new AlertDialog.Builder(getContext())
+                .setView(dialogView)
+                .create();
+
+        if (alertLayout.getWindow() != null) {
+            alertLayout.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        liveDialogNotificationListener = db.collection("Users").document(parentUid)
+                .collection("notifications")
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .addSnapshotListener((snapshots, error) -> {
+                    if (error != null) {
+                        Log.e("NotificationDebug", "FIRESTORE ERROR CODE: " + error.getCode(), error);
+                        Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (snapshots != null) {
+                        Log.d("NotificationDebug", "Raw database snapshots found: " + snapshots.size());
+
+                        dialogNotificationsList.clear();
+
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+
+                            NotificationModel notification = doc.toObject(NotificationModel.class);
+
+                            if (notification == null) {
+                                Log.e("NotificationDebug", "Failed to deserialize document ID: " + doc.getId());
+                            } else {
+                                dialogNotificationsList.add(notification);
+                            }
+                        }
+                        dialogAdapter.updateList(new ArrayList<>(dialogNotificationsList));
+
+                        if (dialogNotificationsList.isEmpty()) {
+                            dialogRecycler.setVisibility(View.GONE);
+                            txtEmptyState.setVisibility(View.VISIBLE);
+                            btnClearAll.setEnabled(false);
+                            btnClearAll.setAlpha(0.4f);
+                        } else {
+                            dialogRecycler.setVisibility(View.VISIBLE);
+                            txtEmptyState.setVisibility(View.GONE);
+                            btnClearAll.setEnabled(true);
+                            btnClearAll.setAlpha(1.0f);
+                        }
+                    }
+                });
+
+        ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView rv, @NonNull RecyclerView.ViewHolder vh, @NonNull RecyclerView.ViewHolder t) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int targetPosition = viewHolder.getBindingAdapterPosition();
+                NotificationModel selectedItem = dialogNotificationsList.get(targetPosition);
+
+                AudioManager.getInstance().playSound("cork_pop");
+
+                db.collection("Users").document(parentUid)
+                        .collection("notifications").document(selectedItem.getId())
+                        .delete()
+                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to clear item", Toast.LENGTH_SHORT).show());
+            }
+        };
+        new ItemTouchHelper(swipeCallback).attachToRecyclerView(dialogRecycler);
+
+        btnClearAll.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+
+            if (dialogNotificationsList.isEmpty()) return;
+
+            WriteBatch processingBatch = db.batch();
+            for (NotificationModel notification : dialogNotificationsList) {
+                processingBatch.delete(db.collection("Users").document(parentUid)
+                        .collection("notifications").document(notification.getId()));
+            }
+
+            processingBatch.commit()
+                    .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "All updates cleared.", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to clear collection.", Toast.LENGTH_SHORT).show());
+        });
+
+        btnClose.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            alertLayout.dismiss();
+        });
+
+        alertLayout.setOnDismissListener(dialog -> {
+            if (liveDialogNotificationListener != null) {
+                liveDialogNotificationListener.remove();
+                liveDialogNotificationListener = null;
+            }
+        });
+
+        alertLayout.show();
 
     }
 
