@@ -78,4 +78,11 @@ public class AudioManager {
             themePlayer.pause();
         }
     }
+
+    public void setMusicVolume(int volumeProgress) {
+        if (themePlayer != null) {
+            float volumeValue = volumeProgress / 100f;
+            themePlayer.setVolume(volumeValue, volumeValue);
+        }
+    }
 }

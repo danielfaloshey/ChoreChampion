@@ -1,5 +1,7 @@
 package com.faloshey.chorechampion;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AudioManager.getInstance().init(this);
+        SharedPreferences prefs = getSharedPreferences("ChoreChampionPrefs", Context.MODE_PRIVATE);
+        int savedVolume = prefs.getInt("music_volume", 40);
+        AudioManager.getInstance().setMusicVolume(savedVolume);
         AudioManager.getInstance().startTheme();
 
         sessionViewModel = new ViewModelProvider(this).get(AppSessionViewModel.class);
@@ -115,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
         getLayoutInflater().inflate(R.layout.custom_nav_child, bottomNavContainer);
 
         setUpChildNavClicks();
+    }
+
+    public void navigateToLoginGate() {
+        navController.setGraph(R.navigation.auth_nav_graph);
+        bottomNavContainer.removeAllViews();
     }
 
     private void setUpChildNavClicks() {
