@@ -13,6 +13,7 @@ import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,6 +23,11 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth auth;
     private TextInputEditText emailInput;
     private TextInputEditText passwordInput;
+
+    private CircularProgressIndicator progressIndicator;
+    private MaterialButton loginBtn;
+    private MaterialButton googleLogInBtn;
+    private MaterialButton forgotPasswordBtn;
 
 
     public LoginFragment() { }
@@ -43,9 +49,10 @@ public class LoginFragment extends Fragment {
 
         emailInput = view.findViewById(R.id.login_email);
         passwordInput = view.findViewById(R.id.login_password);
-        MaterialButton loginBtn = view.findViewById(R.id.login_btn);
-        MaterialButton forgotPasswordBtn = view.findViewById(R.id.forgot_password_btn);
-        MaterialButton googleLogInBtn = view.findViewById(R.id.google_login);
+        loginBtn = view.findViewById(R.id.login_btn);
+        forgotPasswordBtn = view.findViewById(R.id.forgot_password_btn);
+        googleLogInBtn = view.findViewById(R.id.google_login);
+        progressIndicator = view.findViewById(R.id.login_progress);
 
         loginBtn.setOnClickListener(v ->{
             AudioManager.getInstance().playSound("cork_pop");
@@ -59,6 +66,16 @@ public class LoginFragment extends Fragment {
             AudioManager.getInstance().playSound("cork_pop");
             logInWithGoogle();
         });
+    }
+
+    private void setLoadingState(boolean isLoading) {
+        if (progressIndicator != null) {
+            progressIndicator.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        }
+
+        loginBtn.setEnabled(!isLoading);
+        googleLogInBtn.setEnabled(!isLoading);
+        forgotPasswordBtn.setEnabled(!isLoading);
     }
 
     private void handleLogin() {
@@ -75,10 +92,14 @@ public class LoginFragment extends Fragment {
             return;
         }
 
+        setLoadingState(true);
+
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
 
                     if (!task.isSuccessful()) {
+
+                        setLoadingState(false);
                         String errorMsg = task.getException() != null ? task.getException().getMessage() : "Login failed";
                         Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
                         return;
@@ -90,6 +111,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void logInWithGoogle() {
+
+        setLoadingState(true);
+
         androidx.credentials.CredentialManager credentialManager = androidx.credentials.CredentialManager.create(requireContext());
 
         com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption googleIdOption =
@@ -128,14 +152,20 @@ public class LoginFragment extends Fragment {
                                 authenticateLoginWithGoogle(firebaseAuthCredential);
 
                             } catch (IllegalArgumentException e) {
+                                setLoadingState(false);
                                 android.util.Log.e("GOOGLE_AUTH", "Token decryption parsing failure", e);
                                 Toast.makeText(getContext(), "Google Token Parsing Error", Toast.LENGTH_SHORT).show();
                             }
+                        }
+                        else {
+                            setLoadingState(false);
                         }
                     }
 
                     @Override
                     public void onError(@NonNull androidx.credentials.exceptions.GetCredentialException e) {
+                        setLoadingState(false);
+
                         String errorString = e.getMessage() != null ? e.getMessage() : "";
                         android.util.Log.e("GOOGLE_AUTH", "Credential system error message: " + errorString, e);
 
@@ -156,6 +186,8 @@ public class LoginFragment extends Fragment {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
+
+                        setLoadingState(false);
                         String err = task.getException() != null ? task.getException().getMessage() : "Firebase handshake failed";
                         Toast.makeText(getContext(), err, Toast.LENGTH_LONG).show();
                         return;
@@ -180,8 +212,11 @@ public class LoginFragment extends Fragment {
             return;
         }
 
+        setLoadingState(true);
+
         auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
+                    setLoadingState(false);
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Reset link sent to " + email, Toast.LENGTH_LONG).show();
                     } else {

@@ -13,6 +13,7 @@ import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -31,6 +32,10 @@ public class SignupFragment extends Fragment {
     private TextInputEditText passwordInput;
     private TextInputEditText confirmInput;
     private TextInputEditText pinInput;
+
+    private CircularProgressIndicator progressIndicator;
+    private MaterialButton createBtn;
+    private MaterialButton googleSignup;
 
     public SignupFragment() { }
 
@@ -54,8 +59,8 @@ public class SignupFragment extends Fragment {
         passwordInput = view.findViewById(R.id.signup_password);
         confirmInput = view.findViewById(R.id.signup_confirm);
         pinInput = view.findViewById(R.id.create_pin);
-        MaterialButton googleSignup = view.findViewById(R.id.google_signup);
-        MaterialButton createBtn = view.findViewById(R.id.create_btn);
+        googleSignup = view.findViewById(R.id.google_signup);
+        createBtn = view.findViewById(R.id.create_btn);
 
         googleSignup.setOnClickListener(v -> {
             AudioManager.getInstance().playSound("cork_pop");
@@ -67,6 +72,19 @@ public class SignupFragment extends Fragment {
             handleSignup();
         });
 
+    }
+
+    private void setLoadingState(boolean isLoading) {
+        if (progressIndicator != null) {
+            progressIndicator.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        }
+        createBtn.setEnabled(!isLoading);
+        googleSignup.setEnabled(!isLoading);
+        nameInput.setEnabled(!isLoading);
+        emailInput.setEnabled(!isLoading);
+        passwordInput.setEnabled(!isLoading);
+        confirmInput.setEnabled(!isLoading);
+        pinInput.setEnabled(!isLoading);
     }
 
 
@@ -103,9 +121,12 @@ public class SignupFragment extends Fragment {
             return;
         }
 
+        setLoadingState(true);
+
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
+                        setLoadingState(false);
                         String errorMsg = task.getException() != null ? task.getException().getMessage() : "Signup Failed";
                         Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
                         return;
@@ -131,9 +152,10 @@ public class SignupFragment extends Fragment {
                                     ((MainActivity) getActivity()).enterParentMode();
                                 }
                             })
-                            .addOnFailureListener(e ->
-                                    Toast.makeText(getContext(), "Auth succeeded, but profile save failed: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                            );
+                            .addOnFailureListener(e -> {
+                                setLoadingState(false);
+                                Toast.makeText(getContext(), "Auth succeeded, but profile save failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            });
 
                 });
 
@@ -146,6 +168,8 @@ public class SignupFragment extends Fragment {
             Toast.makeText(getContext(), "Please create a 4-digit numeric PIN first before signing up with Google!", Toast.LENGTH_LONG).show();
             return;
         }
+
+        setLoadingState(true);
 
         androidx.credentials.CredentialManager credentialManager = androidx.credentials.CredentialManager.create(requireContext());
 
@@ -186,14 +210,19 @@ public class SignupFragment extends Fragment {
                                 authenticateFirebaseWithGoogle(firebaseAuthCredential, googleDisplayName, pin);
 
                             } catch (IllegalArgumentException e) {
+                                setLoadingState(false);
                                 android.util.Log.e("GOOGLE_AUTH", "Token decryption parsing failure", e);
                                 Toast.makeText(getContext(), "Google Token Parsing Error", Toast.LENGTH_SHORT).show();
                             }
+                        } else {
+                            setLoadingState(false);
                         }
                     }
 
                     @Override
                     public void onError(@NonNull androidx.credentials.exceptions.GetCredentialException e) {
+
+                        setLoadingState(false);
                         String errorString = e.getMessage() != null ? e.getMessage() : "";
                         android.util.Log.e("GOOGLE_AUTH", "Credential system error message: " + errorString, e);
 
@@ -214,13 +243,17 @@ public class SignupFragment extends Fragment {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
+                        setLoadingState(false);
                         String err = task.getException() != null ? task.getException().getMessage() : "Firebase handshake failed";
                         Toast.makeText(getContext(), err, Toast.LENGTH_LONG).show();
                         return;
                     }
 
                     com.google.firebase.auth.FirebaseUser user = auth.getCurrentUser();
-                    if (user == null) return;
+                    if (user == null) {
+                        setLoadingState(false);
+                        return;
+                    }
 
                     String parentId = user.getUid();
                     String email = user.getEmail() != null ? user.getEmail() : "";
@@ -247,9 +280,10 @@ public class SignupFragment extends Fragment {
                                     ((MainActivity) getActivity()).enterParentMode();
                                 }
                             })
-                            .addOnFailureListener(e ->
-                                    Toast.makeText(getContext(), "Auth complete, but database setup failed: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                            );
+                            .addOnFailureListener(e -> {
+                                setLoadingState(false);
+                                Toast.makeText(getContext(), "Auth complete, but database setup failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            });
                 });
     }
 }

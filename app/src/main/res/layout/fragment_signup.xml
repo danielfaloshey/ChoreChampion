@@ -1,203 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-    android:background="@drawable/hallway_door">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/hallway_door"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/irishgrover_regular"
+                android:text="@string/create_title"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/signup_display_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_displayName"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/signup_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/navy_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/signup_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/navy_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/signup_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/confirm_password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/navy_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_pin"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberPassword"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_btn"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/forest_green"
+                android:elevation="12dp"
+                android:fontFamily="@font/irishgrover_regular"
+                android:stateListAnimator="@animator/button_pop"
+                android:text="@string/create_button"
+                android:textAllCaps="false"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/irishgrover_regular"
+                android:text="@string/signup_option"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/google_signup"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/google_login_desc"
+                android:elevation="12dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@animator/button_pop"
+                android:text=""
+                app:icon="@drawable/google_vector"
+                app:iconGravity="top"
+                app:iconSize="48dp"
+                app:iconTint="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/macondo"
+                android:text="@string/google_pin_msg"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/signup_progress"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:padding="24dp" >
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/navy_blue"
+        app:trackCornerRadius="4dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/irishgrover_regular"
-            android:text="@string/create_title"
-            android:textSize="32sp"
-            android:textColor="@color/white" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_display_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:hint="@string/create_displayName"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:hint="@string/create_email"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:hint="@string/create_password"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signup_confirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:hint="@string/confirm_password"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_pin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:hint="@string/create_pin"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_btn"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/forest_green"
-            android:text="@string/create_button"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textAllCaps="false"
-            android:textSize="24sp"
-            android:elevation="12dp"
-            android:stateListAnimator="@animator/button_pop"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/signup_option"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textSize="20sp"
-            android:textColor="@color/white" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/google_signup"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/google_login_desc"
-            android:text=""
-            app:icon="@drawable/google_vector"
-            app:iconSize="48dp"
-            app:iconTint="@null"
-            app:iconGravity="top"
-            android:backgroundTint="@android:color/transparent"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:insetLeft="0dp"
-            android:insetRight="0dp"
-            android:elevation="12dp"
-            android:stateListAnimator="@animator/button_pop"
-            style="@style/Widget.Material3.Button.Icon"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/google_pin_msg"
-            android:textColor="@color/white"
-            android:fontFamily="@font/macondo"
-            android:textSize="12sp"
-            android:layout_marginTop="6dp"
-            />
-
-    </LinearLayout>
-</ScrollView>
+</FrameLayout>

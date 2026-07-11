@@ -1,139 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-    android:background="@drawable/hallway_door">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="24dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/irishgrover_regular"
-            android:text="@string/login_title"
-            android:textSize="32sp"
-            android:textColor="@color/white" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/email_msg"
-                android:textSize="16sp"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:hintTextAppearance="@style/CustomHintAppearance"
-            app:expandedHintEnabled="true"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp" >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password_msg"
-                android:textSize="16sp"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:textAppearance="@style/CustomInputTextAppearance"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/hallway_door"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end">
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/forgot_password_btn"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/macondo"
-                android:text="@string/forgot_password"
+                android:fontFamily="@font/irishgrover_regular"
+                android:text="@string/login_title"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email_msg"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:expandedHintEnabled="true"
+                app:hintTextAppearance="@style/CustomHintAppearance"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/navy_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password_msg"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textAppearance="@style/CustomInputTextAppearance"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/forgot_password_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/macondo"
+                    android:text="@string/forgot_password"
+                    android:textAllCaps="false"
+                    android:textColor="@color/red"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/login_btn"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/red"
+                android:elevation="12dp"
+                android:fontFamily="@font/irishgrover_regular"
+                android:stateListAnimator="@animator/button_pop"
+                android:text="@string/login_button"
                 android:textAllCaps="false"
-                android:textColor="@color/red"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck" />
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/irishgrover_regular"
+                android:text="@string/login_option"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/google_login"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/google_login_desc"
+                android:elevation="12dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@animator/button_pop"
+                android:text=""
+                app:icon="@drawable/google_vector"
+                app:iconGravity="top"
+                app:iconSize="48dp"
+                app:iconTint="@null" />
+
         </LinearLayout>
+    </ScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_btn"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/red"
-            android:text="@string/login_button"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textAllCaps="false"
-            android:textSize="24sp"
-            android:elevation="12dp"
-            android:stateListAnimator="@animator/button_pop"/>
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/login_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/navy_blue"
+        app:trackCornerRadius="4dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_option"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textSize="20sp"
-            android:textColor="@color/white" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/google_login"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/google_login_desc"
-            android:text=""
-            app:icon="@drawable/google_vector"
-            app:iconSize="48dp"
-            app:iconTint="@null"
-            app:iconGravity="top"
-            android:backgroundTint="@android:color/transparent"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:insetLeft="0dp"
-            android:insetRight="0dp"
-            android:elevation="12dp"
-            android:stateListAnimator="@animator/button_pop"
-            style="@style/Widget.Material3.Button.Icon"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>
