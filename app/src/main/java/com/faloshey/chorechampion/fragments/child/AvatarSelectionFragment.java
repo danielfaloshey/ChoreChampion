@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.AvatarGridAdapter;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -60,6 +61,7 @@ public class AvatarSelectionFragment extends Fragment {
 
     private Map<String, int[]> classAvatarMap;
     private final List<String> spinnerCategories = new ArrayList<>();
+
 
     public AvatarSelectionFragment() { }
 
@@ -122,11 +124,15 @@ public class AvatarSelectionFragment extends Fragment {
                 }
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        doneBtn.setOnClickListener(v -> saveSelectedAvatarToFirestore());
+        doneBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            saveSelectedAvatarToFirestore();
+        });
     }
 
     private void saveSelectedAvatarToFirestore() {

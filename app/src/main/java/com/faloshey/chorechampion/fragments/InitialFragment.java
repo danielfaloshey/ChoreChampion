@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import com.faloshey.chorechampion.R;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 
 public class InitialFragment extends Fragment {
@@ -34,13 +35,15 @@ public class InitialFragment extends Fragment {
 
         NavController navController = Navigation.findNavController(view);
 
-        loginBtn.setOnClickListener(v ->
-                navController.navigate(R.id.action_initialFragment_to_loginFragment)
-        );
+        loginBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            navController.navigate(R.id.action_initialFragment_to_loginFragment);
+        });
 
-        signupBtn.setOnClickListener(v ->
-                navController.navigate(R.id.action_initialFragment_to_signupFragment)
-        );
+        signupBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            navController.navigate(R.id.action_initialFragment_to_signupFragment);
+        });
     }
 
 

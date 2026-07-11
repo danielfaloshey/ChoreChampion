@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,8 +57,15 @@ public class SignupFragment extends Fragment {
         MaterialButton googleSignup = view.findViewById(R.id.google_signup);
         MaterialButton createBtn = view.findViewById(R.id.create_btn);
 
-        googleSignup.setOnClickListener(v -> signUpWithGoogle());
-        createBtn.setOnClickListener(v -> handleSignup());
+        googleSignup.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            signUpWithGoogle();
+        });
+
+        createBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            handleSignup();
+        });
 
     }
 

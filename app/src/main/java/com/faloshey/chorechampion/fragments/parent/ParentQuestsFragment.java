@@ -23,6 +23,7 @@ import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ParentQuestAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
 import com.faloshey.chorechampion.models.QuestModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -87,22 +88,33 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                AudioManager.getInstance().playSound("cork_pop");
                 updateUiForCurrentTab();
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {}
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onTabReselected(TabLayout.Tab tab) {
+                AudioManager.getInstance().playSound("cork_pop");
+            }
         });
 
-        addBtn.setOnClickListener(v -> showQuestDialog(null));
-        parentQuestInfoBtn.setOnClickListener(v -> showQuestInfoDialog());
+        addBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showQuestDialog(null);
+        });
+        parentQuestInfoBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showQuestInfoDialog();
+        });
         editBtn.setOnClickListener(v -> {
             if (activeSelectedQuest == null) return;
 
             if (tabLayout.getSelectedTabPosition() == 0) {
+                AudioManager.getInstance().playSound("cork_pop");
                 showQuestDialog(activeSelectedQuest);
             } else {
+                AudioManager.getInstance().playSound("cork_pop");
                 approveQuestAndRewardChild(activeSelectedQuest);
             }
         });

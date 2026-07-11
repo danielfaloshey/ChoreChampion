@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ParentShopAdapter;
 import com.faloshey.chorechampion.models.ShopItemModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -69,10 +70,17 @@ public class ParentShopFragment extends Fragment implements ParentShopAdapter.On
         shopAdapter = new ParentShopAdapter(shopItemList, this);
         shopRecyclerView.setAdapter(shopAdapter);
 
-        addBtn.setOnClickListener(v -> showShopDialog(null));
-        parentShopInfoBtn.setOnClickListener(v -> showShopInfoDialog());
+        addBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showShopDialog(null);
+        });
+        parentShopInfoBtn.setOnClickListener(v ->{
+            AudioManager.getInstance().playSound("cork_pop");
+            showShopInfoDialog();
+        });
         editBtn.setOnClickListener(v -> {
             if (selectedShopItem != null) {
+                AudioManager.getInstance().playSound("cork_pop");
                 showShopDialog(selectedShopItem);
             }
         });

@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,9 +47,18 @@ public class LoginFragment extends Fragment {
         MaterialButton forgotPasswordBtn = view.findViewById(R.id.forgot_password_btn);
         MaterialButton googleLogInBtn = view.findViewById(R.id.google_login);
 
-        loginBtn.setOnClickListener(v -> handleLogin());
-        forgotPasswordBtn.setOnClickListener(v-> handleForgotPassword());
-        googleLogInBtn.setOnClickListener(v -> logInWithGoogle());
+        loginBtn.setOnClickListener(v ->{
+            AudioManager.getInstance().playSound("cork_pop");
+            handleLogin();
+        });
+        forgotPasswordBtn.setOnClickListener(v ->{
+            AudioManager.getInstance().playSound("cork_pop");
+            handleForgotPassword();
+        });
+        googleLogInBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            logInWithGoogle();
+        });
     }
 
     private void handleLogin() {

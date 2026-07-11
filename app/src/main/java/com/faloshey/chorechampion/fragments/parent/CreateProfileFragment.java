@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +48,10 @@ public class CreateProfileFragment extends Fragment {
         usernameInput = view.findViewById(R.id.child_username_input);
         MaterialButton createBtn = view.findViewById(R.id.create_profile_btn);
 
-        createBtn.setOnClickListener(v -> createChildProfile(view));
+        createBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            createChildProfile(view);
+        });
     }
 
     private void createChildProfile(View view) {

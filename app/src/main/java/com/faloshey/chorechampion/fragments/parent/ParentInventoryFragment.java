@@ -22,6 +22,7 @@ import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ParentInventoryAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
 import com.faloshey.chorechampion.models.ShopItemModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -78,7 +79,10 @@ public class ParentInventoryFragment extends Fragment implements ParentInventory
 
         adapter = new ParentInventoryAdapter(selectedChildInventory, this);
         recyclerView.setAdapter(adapter);
-        inventoryInfoBtn.setOnClickListener(v -> showInventoryInfo());
+        inventoryInfoBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showInventoryInfo();
+        });
 
         if (auth.getCurrentUser() != null) {
             parentId = auth.getCurrentUser().getUid();

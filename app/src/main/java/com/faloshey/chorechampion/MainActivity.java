@@ -8,12 +8,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
-
 import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AudioManager.getInstance().init(this);
+        AudioManager.getInstance().startTheme();
+
         sessionViewModel = new ViewModelProvider(this).get(AppSessionViewModel.class);
 
         auth = FirebaseAuth.getInstance();
@@ -41,15 +43,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         navController.setGraph(R.navigation.auth_nav_graph);
-        /*
-        if (auth.getCurrentUser() != null) {
-            enterParentMode();
-        }
-        else {
-            navController.setGraph(R.navigation.auth_nav_graph);
-        }
-
-         */
 
     }
 
@@ -77,19 +70,34 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         if (inventory != null) {
-            inventory.setOnClickListener(v -> navController.navigate(R.id.parentInventoryFragment, null, navOptions));
+            inventory.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.parentInventoryFragment, null, navOptions);
+            });
         }
         if (quests != null) {
-            quests.setOnClickListener(v -> navController.navigate(R.id.parentQuestsFragment, null, navOptions));
+            quests.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.parentQuestsFragment, null, navOptions);
+            });
         }
         if (home != null) {
-            home.setOnClickListener(v -> navController.navigate(R.id.parentHomeFragment, null, navOptions));
+            home.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.parentHomeFragment, null, navOptions);
+            });
         }
         if (shop != null) {
-            shop.setOnClickListener(v -> navController.navigate(R.id.parentShopFragment, null, navOptions));
+            shop.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.parentShopFragment, null, navOptions);
+            });
         }
         if (settings != null) {
-            settings.setOnClickListener(v -> navController.navigate(R.id.parentSettingsFragment, null, navOptions));
+            settings.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.parentSettingsFragment, null, navOptions);
+            });
         }
     }
 
@@ -120,14 +128,34 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         if (quests != null) {
-            quests.setOnClickListener(v -> navController.navigate(R.id.childQuestsFragment, null, navOptions));
+            quests.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.childQuestsFragment, null, navOptions);
+            });
         }
         if (home != null) {
-            home.setOnClickListener(v -> navController.navigate(R.id.childHomeFragment, null, navOptions));
+            home.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.childHomeFragment, null, navOptions);
+            });
         }
         if (shop != null) {
-            shop.setOnClickListener(v -> navController.navigate(R.id.childShopFragment, null, navOptions));
+            shop.setOnClickListener(v -> {
+                AudioManager.getInstance().playSound("cork_pop");
+                navController.navigate(R.id.childShopFragment, null, navOptions);
+            });
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        AudioManager.getInstance().startTheme();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AudioManager.getInstance().pauseTheme();
+    }
 }

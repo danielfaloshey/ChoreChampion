@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.utils.LevelCalculator;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.android.material.button.MaterialButton;
@@ -77,6 +78,7 @@ public class ChildHomeFragment extends Fragment {
         });
 
         editAvatarBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
             ChildModel currentChild = sessionViewModel.getActiveChild().getValue();
             if (currentChild != null) {
                 Bundle args = new Bundle();
@@ -85,9 +87,11 @@ public class ChildHomeFragment extends Fragment {
             }
         });
 
-        exitBtn.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_childHomeFragment_to_pinValidationFragment)
-        );
+        exitBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            Navigation.findNavController(view).navigate(R.id.action_childHomeFragment_to_pinValidationFragment);
+        });
+
 
     }
 
@@ -130,7 +134,7 @@ public class ChildHomeFragment extends Fragment {
                             String savedAvatarName = updatedChild.getAvatarName();
 
                             if (savedAvatarName != null && !savedAvatarName.trim().isEmpty()) {
-                                int resId = requireContext().getResources().getIdentifier(
+                                @SuppressLint("DiscouragedApi") int resId = requireContext().getResources().getIdentifier(
                                         savedAvatarName,
                                         "drawable",
                                         requireContext().getPackageName()

@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,9 +57,15 @@ public class PinValidationFragment extends Fragment {
 
         setupPinBoxNavigation();
 
-        backBtn.setOnClickListener(v -> Navigation.findNavController(view).navigateUp());
+        backBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            Navigation.findNavController(view).navigateUp();
+        });
 
-        enterPinBtn.setOnClickListener(v -> processPinValidation());
+        enterPinBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            processPinValidation();
+        });
 
         pinBox4.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || (event != null &&

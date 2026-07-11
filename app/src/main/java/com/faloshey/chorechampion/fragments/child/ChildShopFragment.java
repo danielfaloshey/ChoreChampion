@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildShopAdapter;
 import com.faloshey.chorechampion.models.ShopItemModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -84,10 +85,15 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
 
         buyBtn.setOnClickListener(v -> {
             if (selectedItem != null) {
+                AudioManager.getInstance().playSound("purchase_complete");
                 purchaseItemFromShop(selectedItem);
             }
         });
-        childShopInfoBtn.setOnClickListener(v -> showChildShopInfo());
+
+        childShopInfoBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showChildShopInfo();
+        });
 
         sessionViewModel.getActiveChild().observe(getViewLifecycleOwner(), child -> {
             if (child != null && auth.getCurrentUser() != null) {

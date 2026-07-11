@@ -20,6 +20,7 @@ import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildGridAdapter;
 import com.faloshey.chorechampion.models.ChildModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -64,6 +65,7 @@ public class ParentHomeFragment extends Fragment {
         childList = new ArrayList<>();
         adapter = new ChildGridAdapter(childList, child -> {
 
+            AudioManager.getInstance().playSound("cork_pop");
             if (getActivity() instanceof MainActivity) {
                 ((MainActivity) getActivity()).switchProfileToChild(child);
             }
@@ -76,11 +78,15 @@ public class ParentHomeFragment extends Fragment {
             listenToChildrenProfiles(parentId);
         }
 
-        addChildBtn.setOnClickListener(v ->
-                Navigation.findNavController(view).navigate(R.id.action_parentHomeFragment_to_createProfileFragment)
-        );
+        addChildBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            Navigation.findNavController(view).navigate(R.id.action_parentHomeFragment_to_createProfileFragment);
+        });
 
-        editChildBtn.setOnClickListener(v -> showManageChildrenDialog());
+        editChildBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showManageChildrenDialog();
+        });
     }
 
     private void loadParentProfileData(String parentId) {

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.adapters.ChildQuestAdapter;
 import com.faloshey.chorechampion.models.QuestModel;
+import com.faloshey.chorechampion.service.AudioManager;
 import com.faloshey.chorechampion.viewmodels.AppSessionViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -84,6 +85,7 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                AudioManager.getInstance().playSound("cork_pop");
                 updateUiForCurrentTab();
             }
 
@@ -91,19 +93,25 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
             public void onTabUnselected(TabLayout.Tab tab) { }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) { }
+            public void onTabReselected(TabLayout.Tab tab) { AudioManager.getInstance().playSound("cork_pop"); }
         });
 
         actionBtn.setOnClickListener(v -> {
             if (selectedQuest == null) return;
 
             if (tabLayout.getSelectedTabPosition() == 0) {
+                AudioManager.getInstance().playSound("quest_complete");
                 completeQuest(selectedQuest);
             } else {
+                AudioManager.getInstance().playSound("cork_pop");
                 claimQuest(selectedQuest);
             }
         });
-        childQuestInfoBtn.setOnClickListener(v -> showChildQuestInfo());
+
+        childQuestInfoBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            showChildQuestInfo();
+        });
 
         sessionViewModel.getActiveChild().observe(getViewLifecycleOwner(), child -> {
             if (child != null && auth.getCurrentUser() != null) {
