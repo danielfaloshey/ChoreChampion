@@ -27,12 +27,16 @@
             android:id="@+id/login_btn_initial"
             android:layout_width="250dp"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="100dp"
             android:backgroundTint="@color/red"
             android:text="@string/login_button"
             android:fontFamily="@font/irishgrover_regular"
             android:textAllCaps="false"
             android:textSize="24sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:elevation="12dp"
             android:stateListAnimator="@animator/button_pop"/>
 
@@ -46,6 +50,10 @@
             android:fontFamily="@font/irishgrover_regular"
             android:textAllCaps="false"
             android:textSize="24sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:elevation="12dp"
             android:stateListAnimator="@animator/button_pop"/>
     </LinearLayout>

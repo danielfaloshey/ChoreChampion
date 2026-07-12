@@ -30,7 +30,11 @@
             android:layout_height="wrap_content"
             android:text="@string/quests_title"
             android:fontFamily="@font/irishgrover_regular"
-            android:textSize="36sp"
+            android:textSize="46sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:textColor="@color/white"/>
 
         <com.google.android.material.card.MaterialCardView
@@ -102,6 +106,10 @@
                 android:text="@string/add_button"
                 android:layout_marginEnd="8dp"
                 app:cornerRadius="4dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
                 android:fontFamily="@font/irishgrover_regular"
                 android:textSize="24sp"
                 android:backgroundTint="@color/forest_green"/>
@@ -113,6 +121,10 @@
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 android:elevation="12dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
                 android:stateListAnimator="@animator/button_pop"
                 app:cornerRadius="4dp"
                 android:text="@string/edit_button"
@@ -130,6 +142,10 @@
             android:text="@string/quests_msg"
             android:fontFamily="@font/macondo"
             android:textSize="20sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:textColor="@color/white"/>
 
     </LinearLayout>
@@ -140,8 +156,8 @@
         android:layout_height="48dp"
         android:padding="0dp"
         android:layout_gravity="end|top"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
         app:backgroundTint="@color/glassWhite"
         app:icon="@drawable/ic_info"

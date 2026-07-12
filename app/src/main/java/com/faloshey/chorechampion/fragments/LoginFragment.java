@@ -5,10 +5,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.service.AudioManager;
@@ -53,6 +56,7 @@ public class LoginFragment extends Fragment {
         forgotPasswordBtn = view.findViewById(R.id.forgot_password_btn);
         googleLogInBtn = view.findViewById(R.id.google_login);
         progressIndicator = view.findViewById(R.id.login_progress);
+        ImageButton backButton = view.findViewById(R.id.login_btn_back);
 
         loginBtn.setOnClickListener(v ->{
             AudioManager.getInstance().playSound("cork_pop");
@@ -65,6 +69,11 @@ public class LoginFragment extends Fragment {
         googleLogInBtn.setOnClickListener(v -> {
             AudioManager.getInstance().playSound("cork_pop");
             logInWithGoogle();
+        });
+
+        backButton.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            Navigation.findNavController(view).navigateUp();
         });
     }
 

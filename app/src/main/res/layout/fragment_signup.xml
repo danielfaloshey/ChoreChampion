@@ -24,6 +24,10 @@
                 android:fontFamily="@font/irishgrover_regular"
                 android:text="@string/create_title"
                 android:textColor="@color/white"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
                 android:textSize="32sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -167,6 +171,10 @@
                 android:fontFamily="@font/irishgrover_regular"
                 android:stateListAnimator="@animator/button_pop"
                 android:text="@string/create_button"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
                 android:textAllCaps="false"
                 android:textSize="24sp" />
 
@@ -177,6 +185,10 @@
                 android:fontFamily="@font/irishgrover_regular"
                 android:text="@string/signup_option"
                 android:textColor="@color/white"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
                 android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -220,5 +232,17 @@
         android:visibility="gone"
         app:indicatorColor="@color/navy_blue"
         app:trackCornerRadius="4dp" />
+
+    <ImageButton
+        android:id="@+id/signup_btn_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_back_arrow"
+        app:tint="@color/white"
+        android:scaleType="centerInside"
+        android:stateListAnimator="@animator/button_pop" />
 
 </FrameLayout>

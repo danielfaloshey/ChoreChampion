@@ -24,7 +24,7 @@
             android:padding="20dp">
 
             <TextView
-                android:id="@+id/dialog_header_title"
+                android:id="@+id/dialog_shop_header_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/irishgrover_regular"
@@ -33,20 +33,20 @@
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="6"
-                android:text="@string/quest_create_title"
+                android:text="@string/add_rewards_title"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/dialog_header_subtitle"
+                android:id="@+id/dialog_shop_header_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/macondo"
-                android:text="@string/quest_assign_message"
+                android:text="@string/add_rewards_subtitle"
                 android:textColor="#757575"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -72,10 +72,10 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dialog_quest_title"
+                    android:id="@+id/dialog_shop_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/dialog_title"
+                    android:hint="@string/shop_item_title"
                     android:importantForAutofill="no"
                     android:inputType="textCapSentences"
                     android:minHeight="48dp"
@@ -99,17 +99,17 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dialog_quest_desc"
+                    android:id="@+id/dialog_shop_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/dialog_description"
+                    android:hint="@string/shop_item_description"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:minHeight="60dp"
                     android:textAppearance="@style/CustomInputTextAppearance"
                     android:textColorHint="#546E7A"
                     android:textSize="16sp"
-                    tools:ignore="VisualLintTextFieldSize" />
+                    tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -128,48 +128,17 @@
                 app:startIconTint="#FFB300">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dialog_quest_gold"
+                    android:id="@+id/dialog_shop_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/dialog_gold"
+                    android:hint="@string/gold_cost_label"
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:minHeight="48dp"
                     android:textAppearance="@style/CustomInputTextAppearance"
                     android:textColorHint="#546E7A"
                     android:textSize="16sp"
-                    tools:ignore="VisualLintTextFieldSize" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="@font/macondo"
-                android:text="@string/dialog_assign"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-                app:hintEnabled="false">
-
-                <Spinner
-                    android:id="@+id/dialog_quest_assignment_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:spinnerMode="dropdown" />
+                    tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <View
@@ -185,7 +154,7 @@
                 android:weightSum="3">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_dialog_delete"
+                    android:id="@+id/btn_shop_delete"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -204,7 +173,7 @@
                     tools:visibility="visible" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_dialog_cancel"
+                    android:id="@+id/btn_shop_cancel"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -220,19 +189,20 @@
                     android:stateListAnimator="@animator/button_pop" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_dialog_save"
+                    android:id="@+id/btn_shop_save"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="4dp"
                     android:backgroundTint="@color/new_blue"
                     android:fontFamily="@font/macondo"
-                    android:text="@string/deploy_btn"
+                    android:text="@string/stock_btn"
                     android:textColor="#37474F"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp"
                     android:stateListAnimator="@animator/button_pop" />
+
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

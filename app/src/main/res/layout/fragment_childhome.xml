@@ -31,12 +31,17 @@
             android:layout_height="wrap_content"
             android:text="@string/champions_hall_title"
             android:fontFamily="@font/irishgrover_regular"
-            android:textSize="42sp"
-            android:textColor="@color/white"/>
+            android:textSize="46sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
+            />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="550dp"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="24dp"
             app:cardElevation="16dp"
@@ -70,6 +75,10 @@
                     android:textSize="32sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"
                     android:layout_marginTop="16dp"/>
 
                 <TextView
@@ -133,6 +142,10 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:elevation="12dp"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="6"
                     android:backgroundTint="@color/forest_green"
                     android:stateListAnimator="@animator/button_pop"/>
 
@@ -147,6 +160,10 @@
             android:layout_marginStart="24dp"
             android:text="@string/exit_button"
             android:textSize="16sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:elevation="12dp"
             app:cornerRadius="4dp"
             android:textStyle="bold"

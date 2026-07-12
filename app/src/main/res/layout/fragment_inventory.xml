@@ -30,7 +30,11 @@
             android:layout_height="wrap_content"
             android:text="@string/inventory_title"
             android:fontFamily="@font/irishgrover_regular"
-            android:textSize="38sp"
+            android:textSize="46sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:textColor="@color/white"/>
 
         <Spinner
@@ -47,7 +51,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="500dp"
             app:cardUseCompatPadding="true"
             app:cardCornerRadius="24dp"
             app:cardElevation="16dp"
@@ -89,8 +93,8 @@
         android:layout_height="48dp"
         android:padding="0dp"
         android:layout_gravity="end|top"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
         app:backgroundTint="@color/glassWhite"
         app:icon="@drawable/ic_info"

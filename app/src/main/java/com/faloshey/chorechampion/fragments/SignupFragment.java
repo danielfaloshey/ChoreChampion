@@ -5,10 +5,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.faloshey.chorechampion.MainActivity;
 import com.faloshey.chorechampion.R;
 import com.faloshey.chorechampion.service.AudioManager;
@@ -61,6 +64,8 @@ public class SignupFragment extends Fragment {
         pinInput = view.findViewById(R.id.create_pin);
         googleSignup = view.findViewById(R.id.google_signup);
         createBtn = view.findViewById(R.id.create_btn);
+        ImageButton backButton = view.findViewById(R.id.signup_btn_back);
+        progressIndicator = view.findViewById(R.id.signup_progress);
 
         googleSignup.setOnClickListener(v -> {
             AudioManager.getInstance().playSound("cork_pop");
@@ -70,6 +75,11 @@ public class SignupFragment extends Fragment {
         createBtn.setOnClickListener(v -> {
             AudioManager.getInstance().playSound("cork_pop");
             handleSignup();
+        });
+
+        backButton.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            Navigation.findNavController(view).navigateUp();
         });
 
     }

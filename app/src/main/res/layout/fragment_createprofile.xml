@@ -31,6 +31,11 @@
             android:text="@string/create_profile_title"
             android:fontFamily="@font/irishgrover_regular"
             android:textSize="34sp"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:textColor="@color/white"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -72,12 +77,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_profile_btn"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             app:cornerRadius="4dp"
             android:backgroundTint="@color/new_blue"
             android:elevation="12dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="6"
             android:fontFamily="@font/irishgrover_regular"
             android:text="@string/onward_button"
             android:textSize="24sp"

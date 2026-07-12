@@ -245,10 +245,29 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
         boolean isEditMode = (questToEdit != null);
 
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_quest_form, null);
+
+        TextView headerTitle = dialogView.findViewById(R.id.dialog_header_title);
+        TextView headerSubtitle = dialogView.findViewById(R.id.dialog_header_subtitle);
         EditText titleInput = dialogView.findViewById(R.id.dialog_quest_title);
         EditText descInput = dialogView.findViewById(R.id.dialog_quest_desc);
         EditText goldInput = dialogView.findViewById(R.id.dialog_quest_gold);
         Spinner assignmentSpinner = dialogView.findViewById(R.id.dialog_quest_assignment_spinner);
+
+        MaterialButton btnDelete = dialogView.findViewById(R.id.btn_dialog_delete);
+        MaterialButton btnCancel = dialogView.findViewById(R.id.btn_dialog_cancel);
+        MaterialButton btnSave = dialogView.findViewById(R.id.btn_dialog_save);
+
+        if (isEditMode) {
+            headerTitle.setText(R.string.modify_quest_title);
+            headerSubtitle.setText(R.string.modify_quest_msg);
+            btnSave.setText(R.string.save_button);
+            btnDelete.setVisibility(View.VISIBLE);
+        } else {
+            headerTitle.setText(R.string.quest_create_title);
+            headerSubtitle.setText(R.string.quest_assign_message);
+            btnSave.setText(R.string.deploy_btn);
+            btnDelete.setVisibility(View.GONE);
+        }
 
         List<String> spinnerOptions = new ArrayList<>();
         spinnerOptions.add("Unassigned");
@@ -278,20 +297,32 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                .setView(dialogView)
-                .setTitle(isEditMode ? "Modify Quest" : "Forge New Quest Document");
-
-        builder.setPositiveButton(isEditMode ? "Save Changes" : "Deploy Quest", null);
-        builder.setNegativeButton("Cancel", ((dialog, which) -> dialog.dismiss()));
-
-        if (isEditMode) {
-            builder.setNeutralButton("Delete", (dialog, which) -> deleteQuestFromFirestore(questToEdit.getQuestId()));
-        }
+                .setView(dialogView);
 
         AlertDialog alertDialog = builder.create();
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
+
         alertDialog.show();
 
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+        btnCancel.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            alertDialog.dismiss();
+        });
+
+        btnDelete.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            if (isEditMode) {
+                deleteQuestFromFirestore(questToEdit.getQuestId());
+                alertDialog.dismiss();
+            }
+        });
+
+        btnSave.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+
             String title = titleInput.getText().toString().trim();
             String desc = descInput.getText().toString().trim();
             String goldStr = goldInput.getText().toString().trim();

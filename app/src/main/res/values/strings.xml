@@ -63,6 +63,12 @@
     <string name="quest_desc_example">Quest Description</string>
     <string name="assigned_to_example">Assigned to here</string>
     <string name="gold_example">200 G</string>
+    <string name="quest_assign_message">Assign tasks and rewards for your champions</string>
+    <string name="quest_create_title">Create A Quest</string>
+    <string name="deploy_btn">Deploy</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="modify_quest_msg">Adjust values for this objective</string>
+    <string name="modify_quest_title">Modify Quest</string>
 
     <string name="active_quests">Active Quests</string>
     <string name="completed_quests">Need Approved</string>
@@ -78,6 +84,15 @@
     <string name="shop_item_title_default">Shop Item</string>
     <string name="shop_item_cost">100 G</string>
     <string name="shop_item_desc_default">Shop item description goes here.</string>
+
+    <string name="stock_btn">Stock</string>
+    <string name="gold_cost_label">Gold Cost</string>
+    <string name="shop_item_description">Description</string>
+    <string name="shop_item_title">Item Title (ex. Extra Hour Screen Time)</string>
+    <string name="add_rewards_subtitle">Add unique rewards and items to the shop</string>
+    <string name="add_rewards_title">Add Shop Item</string>
+    <string name="modify_reward_title">Modify Shop Item</string>
+    <string name="modify_reward_subtitle">Make changes to shop item</string>
 
     <!-- Parent Create Child Profile -->
     <string name="create_profile_title">Create Child Profile</string>
@@ -133,7 +148,7 @@
     <string name="buy_button">Buy!</string>
 
     <!-- Avatar Selection -->
-    <string name="avatar_selection_title">Choose an avatar</string>
+    <string name="avatar_selection_title">Choose an avatar!</string>
     <string name="drop_down_default">Choose class</string>
     <string name="icon_credit">Avatar images made by Freepik from www.flaticon.com</string>
 

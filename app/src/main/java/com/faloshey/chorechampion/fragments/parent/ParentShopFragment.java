@@ -3,13 +3,11 @@ package com.faloshey.chorechampion.fragments.parent;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -114,40 +112,62 @@ public class ParentShopFragment extends Fragment implements ParentShopAdapter.On
     private void showShopDialog(@Nullable ShopItemModel itemToEdit) {
         boolean isEditMode = (itemToEdit != null);
 
-        LinearLayout layout = new LinearLayout(getContext());
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(50, 40, 50, 10);
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_shop_form, null);
 
-        EditText titleInput = new EditText(getContext());
-        titleInput.setHint("Item Title (ex. Extra Hour Screen Time)");
-        if (isEditMode) titleInput.setText(itemToEdit.getTitle());
-        layout.addView(titleInput);
+        TextView headerTitle = dialogView.findViewById(R.id.dialog_shop_header_title);
+        TextView headerSubtitle = dialogView.findViewById(R.id.dialog_shop_header_subtitle);
 
-        EditText descInput = new EditText(getContext());
-        descInput.setHint("Description");
-        if (isEditMode) descInput.setText(itemToEdit.getDescription());
-        layout.addView(descInput);
+        EditText titleInput = dialogView.findViewById(R.id.dialog_shop_title);
+        EditText descInput = dialogView.findViewById(R.id.dialog_shop_desc);
+        EditText costInput = dialogView.findViewById(R.id.dialog_shop_cost);
 
-        EditText costInput = new EditText(getContext());
-        costInput.setHint("Gold Cost");
-        costInput.setInputType(InputType.TYPE_CLASS_NUMBER);
-        if (isEditMode) costInput.setText(String.valueOf(itemToEdit.getCost()));
-        layout.addView(costInput);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
-                .setView(layout)
-                .setTitle(isEditMode ? "Modify Shop Item" : "New Shop Item")
-                .setPositiveButton(isEditMode ? "Save Changes" : "Stock Item", null)
-                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        MaterialButton btnDelete = dialogView.findViewById(R.id.btn_shop_delete);
+        MaterialButton btnCancel = dialogView.findViewById(R.id.btn_shop_cancel);
+        MaterialButton btnSave = dialogView.findViewById(R.id.btn_shop_save);
 
         if (isEditMode) {
-            builder.setNeutralButton("Delete", (dialog, which) -> deleteItemFromVault(itemToEdit.getItemId()));
+            headerTitle.setText(R.string.modify_reward_title);
+            headerSubtitle.setText(R.string.modify_reward_subtitle);
+            btnSave.setText(R.string.save_button);
+            btnDelete.setVisibility(View.VISIBLE);
+
+            titleInput.setText(itemToEdit.getTitle());
+            descInput.setText(itemToEdit.getDescription());
+            costInput.setText(String.valueOf(itemToEdit.getCost()));
+        } else {
+            headerTitle.setText(R.string.add_rewards_title);
+            headerSubtitle.setText(R.string.add_rewards_subtitle);
+            btnSave.setText(R.string.stock_btn);
+            btnDelete.setVisibility(View.GONE);
         }
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                .setView(dialogView);
+
         AlertDialog alertDialog = builder.create();
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
+
         alertDialog.show();
 
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+        btnCancel.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            alertDialog.dismiss();
+        });
+
+        btnDelete.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            if (isEditMode) {
+                deleteItemFromVault(itemToEdit.getItemId());
+                alertDialog.dismiss();
+            }
+        });
+
+        btnSave.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+
             String title = titleInput.getText().toString().trim();
             String desc = descInput.getText().toString().trim();
             String costStr = costInput.getText().toString().trim();
@@ -172,7 +192,6 @@ public class ParentShopFragment extends Fragment implements ParentShopAdapter.On
                     })
                     .addOnFailureListener(e -> Toast.makeText(getContext(), "Sync failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         });
-
     }
 
     @SuppressLint("SetTextI18n")
