@@ -199,12 +199,16 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
 
         if (isQuestBoard) {
             hintText.setText("Claim a quest from the quest board!");
+            hintText.setTextSize(12);
             actionBtn.setText("Accept Quest!");
+            actionBtn.setTextSize(16);
             actionBtn.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.new_blue));
         }
         else {
             hintText.setText("Turn in completed Quests!");
+            hintText.setTextSize(12);
             actionBtn.setText("Turn In Quest!");
+            actionBtn.setTextSize(16);
             actionBtn.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.forest_green));
         }
     }

@@ -15,87 +15,93 @@
         android:src="@drawable/avatar_choice"
         tools:ignore="ImageContrastCheck" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingBottom="@dimen/bottom_nav_height"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/avatar_selection_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/avatar_selection_title"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textSize="36sp"
-            android:textColor="@color/white"
-            android:shadowColor="@color/new_blue"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="6"/>
-
-        <Spinner
-            android:id="@+id/class_selector_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:spinnerMode="dropdown"
-            android:padding="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/spinner_background"
-            android:popupBackground="@drawable/spinner_popup_background"/>
-
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="16dp"
-            app:strokeColor="#40FFFFFF"
-            app:strokeWidth="2dp"
-            app:cardBackgroundColor="@color/glassWhite">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="@dimen/bottom_nav_height">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/avatar_icon_recycler"
+            <TextView
+                android:id="@+id/avatar_selection_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avatar_selection_title"
+                android:fontFamily="@font/irishgrover_regular"
+                android:textSize="36sp"
+                android:textColor="@color/white"
+                android:shadowColor="@color/new_blue"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"/>
+
+            <Spinner
+                android:id="@+id/class_selector_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:padding="16dp"
-                android:clipToPadding="false"/>
-        </com.google.android.material.card.MaterialCardView>
+                android:layout_height="50dp"
+                android:spinnerMode="dropdown"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/spinner_background"
+                android:popupBackground="@drawable/spinner_popup_background"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/avatar_done_btn"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/new_blue"
-            android:fontFamily="@font/irishgrover_regular"
-            android:text="@string/done_button"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="4"
-            android:elevation="12dp"
-            android:textSize="24sp"
-            app:cornerRadius="4dp"
-            android:stateListAnimator="@animator/button_pop"
-            tools:ignore="TextContrastCheck" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="16dp"
+                app:strokeColor="#40FFFFFF"
+                app:strokeWidth="2dp"
+                app:cardBackgroundColor="@color/glassWhite">
 
-        <TextView
-            android:id="@+id/icon_credits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/icon_credit"
-            android:fontFamily="@font/macondo"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
-    </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/avatar_icon_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:padding="16dp"
+                    android:clipToPadding="false"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/avatar_done_btn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/new_blue"
+                android:fontFamily="@font/irishgrover_regular"
+                android:text="@string/done_button"
+                android:textColor="@color/white"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"
+                android:elevation="12dp"
+                android:textSize="24sp"
+                app:cornerRadius="4dp"
+                android:stateListAnimator="@animator/button_pop"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/icon_credits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/icon_credit"
+                android:fontFamily="@font/macondo"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

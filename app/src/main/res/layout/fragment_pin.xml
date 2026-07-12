@@ -22,10 +22,12 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
         android:text="@string/back_button"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:backgroundTint="@android:color/transparent"
         android:fontFamily="@font/macondo"
         app:icon="@drawable/ic_back_arrow"
+        app:iconTint="@color/white"
         app:iconGravity="start"/>
 
     <LinearLayout
@@ -123,6 +125,7 @@
             android:fontFamily="@font/irishgrover_regular"
             android:text="@string/enter_btn"
             android:textSize="18sp"
+            android:textColor="@color/white"
             app:cornerRadius="4dp"
             android:elevation="12dp"
             android:shadowColor="@color/black"

@@ -75,6 +75,7 @@
                 android:fontFamily="@font/irishgrover_regular"
                 android:text="@string/thank_you_btn"
                 android:textSize="18sp"
+                android:textColor="@color/white"
                 app:cornerRadius="8dp"
                 android:elevation="12dp"
                 android:stateListAnimator="@animator/button_pop"

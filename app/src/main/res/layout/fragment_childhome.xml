@@ -15,161 +15,166 @@
         android:src="@drawable/castle_new"
         tools:ignore="ImageContrastCheck" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingBottom="@dimen/bottom_nav_height"
-        android:padding="16dp">
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/bottom_nav_height">
 
-
-        <TextView
-            android:id="@+id/child_home_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/champions_hall_title"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textSize="46sp"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="6"
-            />
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="550dp"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="16dp"
-            app:strokeColor="#40FFFFFF"
-            app:strokeWidth="2dp"
-            app:cardBackgroundColor="@color/glassWhite">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/child_home_avatar"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/ic_placeholder_user"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
-                    android:contentDescription="@string/avatar_desc"/>
-
-                <TextView
-                    android:id="@+id/username_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/username_label"
-                    android:fontFamily="@font/macondo"
-                    android:textSize="32sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:shadowColor="@color/white"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="6"
-                    android:layout_marginTop="16dp"/>
-
-                <TextView
-                    android:id="@+id/child_level_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/level_default"
-                    android:layout_gravity="center"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/macondo"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorOnSurface"
-                    android:layout_marginTop="8dp"/>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/child_level_progress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:trackCornerRadius="4dp"
-                    app:trackThickness="8dp"
-                    app:trackColor="?attr/colorSurfaceVariant"
-                    app:indicatorColor="@color/new_blue" />
-
-                <TextView
-                    android:id="@+id/gold_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/gold_label"
-                    android:fontFamily="@font/macondo"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp"/>
-
-                <TextView
-                    android:id="@+id/xp_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/xp_label"
-                    android:fontFamily="@font/macondo"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp"/>
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/edit_avatar_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    app:cornerRadius="4dp"
-                    android:text="@string/edit_avatar"
-                    android:fontFamily="@font/macondo"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:elevation="12dp"
-                    android:shadowColor="@color/black"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="6"
-                    android:backgroundTint="@color/forest_green"
-                    android:stateListAnimator="@animator/button_pop"/>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/exit_btn"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="24dp"
-            android:text="@string/exit_button"
-            android:textSize="16sp"
-            android:shadowColor="@color/black"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="6"
-            android:elevation="12dp"
-            app:cornerRadius="4dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/macondo"
-            android:backgroundTint="@color/red"
-            android:stateListAnimator="@animator/button_pop"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:padding="16dp">
 
+            <TextView
+                android:id="@+id/child_home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/champions_hall_title"
+                android:fontFamily="@font/irishgrover_regular"
+                android:textSize="46sp"
+                android:textColor="@color/white"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="16dp"
+                app:strokeColor="#40FFFFFF"
+                app:strokeWidth="2dp"
+                app:cardBackgroundColor="@color/glassWhite">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/child_home_avatar"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/ic_placeholder_user"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:contentDescription="@string/avatar_desc"/>
+
+                    <TextView
+                        android:id="@+id/username_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/username_label"
+                        android:fontFamily="@font/macondo"
+                        android:textSize="32sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:shadowColor="@color/white"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="6"
+                        android:layout_marginTop="16dp"/>
+
+                    <TextView
+                        android:id="@+id/child_level_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/level_default"
+                        android:layout_gravity="center"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/macondo"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/child_level_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:trackCornerRadius="4dp"
+                        app:trackThickness="8dp"
+                        app:trackColor="?attr/colorSurfaceVariant"
+                        app:indicatorColor="@color/new_blue" />
+
+                    <TextView
+                        android:id="@+id/gold_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/gold_label"
+                        android:fontFamily="@font/macondo"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:id="@+id/xp_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/xp_label"
+                        android:fontFamily="@font/macondo"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/edit_avatar_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        app:cornerRadius="4dp"
+                        android:textColor="@color/white"
+                        android:text="@string/edit_avatar"
+                        android:fontFamily="@font/macondo"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:elevation="12dp"
+                        android:shadowColor="@color/black"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="6"
+                        android:backgroundTint="@color/forest_green"
+                        android:stateListAnimator="@animator/button_pop"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/exit_button"
+                android:textSize="16sp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
+                android:elevation="12dp"
+                android:textColor="@color/white"
+                app:cornerRadius="4dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/macondo"
+                android:backgroundTint="@color/red"
+                android:stateListAnimator="@animator/button_pop"/>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

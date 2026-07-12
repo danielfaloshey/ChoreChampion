@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <ImageView
         android:id="@+id/settings_background"
@@ -17,8 +18,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:clipToPadding="false"
         android:paddingBottom="@dimen/bottom_nav_height">
 
         <LinearLayout
@@ -81,7 +80,8 @@
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:textAppearance="@style/CustomInputTextAppearance"
-                            android:textColorHint="#757575"
+                            android:textColorHint="@color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             tools:ignore="TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +95,7 @@
                         android:layout_marginEnd="16dp"
                         android:text="@string/save_name"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         android:fontFamily="@font/macondo"
                         app:cornerRadius="4dp"
                         android:shadowColor="@color/black"
@@ -128,7 +129,8 @@
                             android:imeOptions="actionDone"
                             android:inputType="numberPassword"
                             android:textAppearance="@style/CustomInputTextAppearance"
-                            android:textColorHint="#757575"
+                            android:textColorHint="@color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             tools:ignore="TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -142,6 +144,7 @@
                         android:layout_marginEnd="16dp"
                         android:text="@string/save_pin"
                         android:textStyle="bold"
+                        android:textColor="@color/white"
                         android:fontFamily="@font/macondo"
                         app:cornerRadius="4dp"
                         android:elevation="12dp"
@@ -210,6 +213,7 @@
                         android:gravity="center"
                         android:text="@string/coppa_link"
                         android:textColor="@color/navy_blue"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         tools:ignore="TextContrastCheck" />
 
@@ -240,7 +244,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:fontFamily="@font/macondo"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/log_out_btn"
@@ -252,6 +256,7 @@
                         android:textStyle="bold"
                         android:fontFamily="@font/macondo"
                         android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:backgroundTint="@color/red"
                         app:cornerRadius="12dp"
                         android:elevation="6dp"

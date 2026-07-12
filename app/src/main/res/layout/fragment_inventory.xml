@@ -15,77 +15,84 @@
         android:src="@drawable/inventory"
         tools:ignore="ImageContrastCheck" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingBottom="@dimen/bottom_nav_height"
-        android:padding="16dp">
+        android:paddingBottom="@dimen/bottom_nav_height">
 
-        <TextView
-            android:id="@+id/inventory_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inventory_title"
-            android:fontFamily="@font/irishgrover_regular"
-            android:textSize="46sp"
-            android:shadowColor="@color/black"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="6"
-            android:textColor="@color/white"/>
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:padding="16dp">
 
-        <Spinner
-            android:id="@+id/child_selector_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:spinnerMode="dropdown"
-            android:padding="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/spinner_background"
-            android:popupBackground="@drawable/spinner_popup_background"/>
+            <TextView
+                android:id="@+id/inventory_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inventory_title"
+                android:fontFamily="@font/irishgrover_regular"
+                android:textSize="46sp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="6"
+                android:textColor="@color/white"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="16dp"
-            app:strokeColor="#40FFFFFF"
-            app:strokeWidth="2dp"
-            app:cardBackgroundColor="@color/glassWhite">
-
-            <LinearLayout
+            <!-- Dropdown spinner layout elements -->
+            <Spinner
+                android:id="@+id/child_selector_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="50dp"
+                android:spinnerMode="dropdown"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/spinner_background"
+                android:popupBackground="@drawable/spinner_popup_background"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/inventory_recycler"
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="16dp"
+                app:strokeColor="#40FFFFFF"
+                app:strokeWidth="2dp"
+                app:cardBackgroundColor="@color/glassWhite">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="16dp"
-                    android:clipToPadding="false"
-                    android:scrollbars="vertical"/>
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        </com.google.android.material.card.MaterialCardView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/inventory_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="vertical"/>
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/inventory_msg"
-            android:gravity="center"
-            android:fontFamily="@font/macondo"
-            android:textSize="16sp"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:text="@string/inventory_msg"
+                android:gravity="center"
+                android:fontFamily="@font/macondo"
+                android:textSize="12sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/parent_inventory_info"

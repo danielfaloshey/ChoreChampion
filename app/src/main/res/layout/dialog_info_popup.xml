@@ -53,6 +53,7 @@
             android:stateListAnimator="@animator/button_pop"
             android:text="@string/got_it_btn_text"
             android:textSize="18sp"
+            android:textColor="@color/white"
             app:cornerRadius="8dp"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>

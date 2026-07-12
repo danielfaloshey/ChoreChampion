@@ -192,6 +192,7 @@ public class ParentQuestsFragment extends Fragment implements ParentQuestAdapter
             editBtn.setText("Approve Rewards!");
             editBtn.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.forest_green));
             hintMsg.setText("Select a completed quest to award payouts!");
+            hintMsg.setTextSize(12);
         } else {
             addBtn.setVisibility(View.VISIBLE);
 

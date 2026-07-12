@@ -76,11 +76,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/dialog_title"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:importantForAutofill="no"
                     android:inputType="textCapSentences"
                     android:minHeight="48dp"
                     android:textAppearance="@style/CustomInputTextAppearance"
-                    android:textColorHint="#546E7A"
                     android:textSize="16sp"
                     tools:ignore="VisualLintTextFieldSize,VisualLintSystemUi" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,9 +108,10 @@
                     android:inputType="textMultiLine"
                     android:minHeight="60dp"
                     android:textAppearance="@style/CustomInputTextAppearance"
-                    android:textColorHint="#546E7A"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="16sp"
-                    tools:ignore="VisualLintTextFieldSize" />
+                    tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -136,9 +138,10 @@
                     android:inputType="number"
                     android:minHeight="48dp"
                     android:textAppearance="@style/CustomInputTextAppearance"
-                    android:textColorHint="#546E7A"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="16sp"
-                    tools:ignore="VisualLintTextFieldSize" />
+                    tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -169,6 +172,8 @@
                     android:id="@+id/dialog_quest_assignment_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:spinnerMode="dropdown" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,12 +195,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="2dp"
                     android:fontFamily="@font/macondo"
                     android:text="@string/delete_button"
                     android:textColor="#D32F2F"
                     android:visibility="gone"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp"
                     app:rippleColor="#1AFA4238"
@@ -209,11 +214,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="2dp"
                     android:fontFamily="@font/macondo"
                     android:text="@string/cancel_btn"
-                    android:textColor="#757575"
-                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp"
                     app:strokeColor="#B0BEC5"
@@ -224,13 +229,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="2dp"
                     android:backgroundTint="@color/new_blue"
                     android:fontFamily="@font/macondo"
                     android:text="@string/deploy_btn"
-                    android:textColor="#37474F"
-                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textAllCaps="true"
                     app:cornerRadius="12dp"
                     android:stateListAnimator="@animator/button_pop" />
             </LinearLayout>

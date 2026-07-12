@@ -57,6 +57,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/profile_edit_text_hint"
                 android:textSize="16sp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:inputType="text"
                 android:imeOptions="actionDone"
                 android:textAppearance="@style/CustomInputTextAppearance"/>
@@ -90,6 +92,7 @@
             android:fontFamily="@font/irishgrover_regular"
             android:text="@string/onward_button"
             android:textSize="24sp"
+            android:textColor="@color/white"
             android:stateListAnimator="@animator/button_pop"
             tools:ignore="TextContrastCheck" />
 
