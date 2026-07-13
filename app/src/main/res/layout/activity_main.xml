@@ -23,4 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"/>
 
+    <!-- Background images and nav bar button icons created using ChatGPT Image Generator -->
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
