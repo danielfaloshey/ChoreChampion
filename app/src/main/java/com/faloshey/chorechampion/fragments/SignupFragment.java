@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -18,6 +19,7 @@ import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -66,6 +68,18 @@ public class SignupFragment extends Fragment {
         createBtn = view.findViewById(R.id.create_btn);
         ImageButton backButton = view.findViewById(R.id.signup_btn_back);
         progressIndicator = view.findViewById(R.id.signup_progress);
+
+        TextInputLayout usernameLayout = view.findViewById(R.id.username_layout);
+        TextInputLayout emailLayout = view.findViewById(R.id.email_layout);
+        TextInputLayout passwordLayout = view.findViewById(R.id.password_layout);
+        TextInputLayout confirmLayout = view.findViewById(R.id.confirm_password_layout);
+        TextInputLayout pinLayout = view.findViewById(R.id.pin_layout);
+
+        usernameLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
+        emailLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
+        passwordLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
+        confirmLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
+        pinLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
 
         googleSignup.setOnClickListener(v -> {
             AudioManager.getInstance().playSound("cork_pop");

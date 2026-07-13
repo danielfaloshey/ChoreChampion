@@ -108,10 +108,10 @@ public class AvatarSelectionFragment extends Fragment {
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 requireContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item_selected,
                 spinnerCategories
         );
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
         classSelectionSpinner.setAdapter(spinnerAdapter);
 
         classSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

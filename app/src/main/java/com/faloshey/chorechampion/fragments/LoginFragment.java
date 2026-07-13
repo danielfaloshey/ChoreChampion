@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.fragments;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -18,6 +20,7 @@ import com.faloshey.chorechampion.service.AudioManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -57,6 +60,11 @@ public class LoginFragment extends Fragment {
         googleLogInBtn = view.findViewById(R.id.google_login);
         progressIndicator = view.findViewById(R.id.login_progress);
         ImageButton backButton = view.findViewById(R.id.login_btn_back);
+        TextInputLayout passwordLayout = view.findViewById(R.id.password_login_layout);
+        TextInputLayout emailLayout = view.findViewById(R.id.email_login_layout);
+
+        passwordLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
+        emailLayout.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.macondo));
 
         loginBtn.setOnClickListener(v ->{
             AudioManager.getInstance().playSound("cork_pop");

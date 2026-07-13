@@ -141,7 +141,10 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
             infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
 
-        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        closeBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            infoDialog.dismiss();
+        });
         infoDialog.show();
     }
 
@@ -286,7 +289,10 @@ public class ChildQuestsFragment extends Fragment implements ChildQuestAdapter.O
 
         konfettiView.start(party);
 
-        dialogView.findViewById(R.id.close_reward_dialog).setOnClickListener(v -> alertDialog.dismiss());
+        dialogView.findViewById(R.id.close_reward_dialog).setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            alertDialog.dismiss();
+        });
     }
 
     private void resetActionButtonState() {

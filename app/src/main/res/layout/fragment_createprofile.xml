@@ -46,6 +46,7 @@
             app:hintEnabled="false"
             app:boxBackgroundColor="@color/white"
             app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/new_blue"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"

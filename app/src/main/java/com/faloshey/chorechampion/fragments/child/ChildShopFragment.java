@@ -252,7 +252,11 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
                 .build();
 
         konfettiView.start(java.util.Arrays.asList(leftCannon, rightCannon));
-        dialogView.findViewById(R.id.close_shop_dialog).setOnClickListener(v -> alertDialog.dismiss());
+
+        dialogView.findViewById(R.id.close_shop_dialog).setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            alertDialog.dismiss();}
+        );
     }
 
     private void showChildShopInfo() {
@@ -268,7 +272,11 @@ public class ChildShopFragment extends Fragment implements ChildShopAdapter.OnIt
             infoDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
 
-        closeBtn.setOnClickListener(v -> infoDialog.dismiss());
+        closeBtn.setOnClickListener(v -> {
+            AudioManager.getInstance().playSound("cork_pop");
+            infoDialog.dismiss();
+        });
+
         infoDialog.show();
     }
 

@@ -69,6 +69,7 @@
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/new_blue"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -97,6 +98,7 @@
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/new_blue"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -125,6 +127,7 @@
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="@color/new_blue"
                 app:hintEnabled="false"
                 app:startIconDrawable="@android:drawable/btn_star_big_on"
                 app:startIconTint="#FFB300">
@@ -150,64 +153,84 @@
                 android:layout_marginBottom="16dp"
                 android:background="#E0E0E0" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_shop_delete"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginEnd="4dp"
                     android:fontFamily="@font/macondo"
                     android:text="@string/delete_button"
                     android:textColor="#D32F2F"
-                    android:visibility="gone"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="12dp"
                     app:rippleColor="#1AFA4238"
                     app:strokeColor="#E53935"
                     android:stateListAnimator="@animator/button_pop"
-                    tools:visibility="visible" />
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_shop_cancel"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_shop_cancel"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:fontFamily="@font/macondo"
                     android:text="@string/cancel_btn"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="12dp"
                     app:strokeColor="#B0BEC5"
-                    android:stateListAnimator="@animator/button_pop" />
+                    android:stateListAnimator="@animator/button_pop"
+                    app:layout_constraintStart_toEndOf="@+id/btn_shop_delete"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_shop_save"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_shop_save"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2dp"
+                    android:layout_marginStart="4dp"
                     android:backgroundTint="@color/new_blue"
                     android:fontFamily="@font/macondo"
-                    android:textAllCaps="true"
                     android:text="@string/stock_btn"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     app:cornerRadius="12dp"
-                    android:stateListAnimator="@animator/button_pop" />
+                    android:stateListAnimator="@animator/button_pop"
+                    app:layout_constraintStart_toEndOf="@+id/btn_shop_cancel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

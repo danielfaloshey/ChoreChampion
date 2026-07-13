@@ -120,9 +120,12 @@ public class ParentInventoryFragment extends Fragment implements ParentInventory
                         }
                     }
 
-                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(requireContext(),
-                            android.R.layout.simple_spinner_item, names);
-                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
+                            requireContext(),
+                            R.layout.spinner_item_selected,
+                            names
+                    );
+                    spinnerAdapter.setDropDownViewResource(R.layout.spinner_item_dropdown);
                     childSelectorSpinner.setAdapter(spinnerAdapter);
 
                     if (!childrenList.isEmpty() && selectedChildId.isEmpty()) {

@@ -7,17 +7,15 @@
 
     <style name="Theme.ChoreChampion" parent="Base.Theme.ChoreChampion" />
 
-    <style name="CustomHintAppearance" parent="TextAppearance.Material3.BodySmall">
+    <style name="CustomHintAppearance" parent="TextAppearance.Design.Hint">
         <item name="fontFamily">@font/macondo</item>
         <item name="android:fontFamily">@font/macondo</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="CustomInputTextAppearance" parent="TextAppearance.Material3.BodyMedium">
+    <style name="CustomInputTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
         <item name="fontFamily">@font/macondo</item>
         <item name="android:fontFamily">@font/macondo</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="QuestTabTextStyle" parent="TextAppearance.Design.Tab">
@@ -29,6 +27,5 @@
     <style name="ShapeAppearance.Material3.Corner.Full" parent="">
         <item name="cornerSize">50%</item>
     </style>
-
 
 </resources>
