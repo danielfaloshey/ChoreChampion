@@ -67,13 +67,40 @@ public class MainActivity extends AppCompatActivity {
             throw new IllegalStateException("NavHostFragment not found! Check your activity_main.xml layout tag.");
         }
 
-        navController.setGraph(R.navigation.auth_nav_graph);
+        if (auth.getCurrentUser() != null) {
+            String lastActiveRole = prefs.getString("last_active_role", "NONE");
+
+            if ("PARENT".equals(lastActiveRole)) {
+                enterParentMode();
+            } else if ("CHILD".equals(lastActiveRole)) {
+
+                String childId = prefs.getString("last_active_child_id", null);
+                String childName = prefs.getString("last_active_child_name", null);
+
+                if (childId != null && childName != null) {
+                    ChildModel restoredChild = new ChildModel();
+                    restoredChild.setChildId(childId);
+                    restoredChild.setUsername(childName);
+
+                    sessionViewModel.setActiveChild(restoredChild);
+                }
+
+                enterChildMode();
+            } else {
+                navController.setGraph(R.navigation.auth_nav_graph);
+            }
+        } else {
+            navController.setGraph(R.navigation.auth_nav_graph);
+        }
 
     }
 
     // Enter Parent Mode
     public void enterParentMode() {
         navController.setGraph(R.navigation.parent_nav_graph);
+
+        SharedPreferences prefs = getSharedPreferences("ChoreChampionPrefs", Context.MODE_PRIVATE);
+        prefs.edit().putString("last_active_role", "PARENT").apply();
 
         bottomNavContainer.removeAllViews();
         getLayoutInflater().inflate(R.layout.custom_bottom_nav, bottomNavContainer);
@@ -129,12 +156,21 @@ public class MainActivity extends AppCompatActivity {
     public void switchProfileToChild(ChildModel child) {
         sessionViewModel.setActiveChild(child);
 
+        SharedPreferences prefs = getSharedPreferences("ChoreChampionPrefs", Context.MODE_PRIVATE);
+        prefs.edit()
+                .putString("last_active_child_id", child.getChildId())
+                .putString("last_active_child_name", child.getUsername())
+                .apply();
+
         enterChildMode();
     }
 
     // Enter Child Mode
     public void enterChildMode() {
         navController.setGraph(R.navigation.child_nav_graph);
+
+        SharedPreferences prefs = getSharedPreferences("ChoreChampionPrefs", Context.MODE_PRIVATE);
+        prefs.edit().putString("last_active_role", "CHILD").apply();
 
         bottomNavContainer.removeAllViews();
         getLayoutInflater().inflate(R.layout.custom_nav_child, bottomNavContainer);
@@ -143,6 +179,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToLoginGate() {
+        SharedPreferences prefs = getSharedPreferences("ChoreChampionPrefs", Context.MODE_PRIVATE);
+        prefs.edit()
+                .remove("last_active_role")
+                .remove("last_active_child_id")
+                .remove("last_active_child_name")
+                .apply();
+
         navController.setGraph(R.navigation.auth_nav_graph);
         bottomNavContainer.removeAllViews();
     }

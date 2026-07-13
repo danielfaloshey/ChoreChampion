@@ -245,6 +245,9 @@ public class LoginFragment extends Fragment {
 
     private void navigateToParentMode() {
         if (getActivity() instanceof MainActivity) {
+
+            android.content.SharedPreferences prefs = getActivity().getSharedPreferences("ChoreChampionPrefs", android.content.Context.MODE_PRIVATE);
+            prefs.edit().putString("last_active_role", "PARENT").apply();
             ((MainActivity) getActivity()).enterParentMode();
         }
     }

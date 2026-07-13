@@ -1,5 +1,6 @@
 package com.faloshey.chorechampion.fragments.parent;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,6 +62,8 @@ public class ParentHomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_parenthome, container, false);
     }
 
+    @SuppressLint("UnsafeOptInUsageError")
+    @com.google.android.material.badge.ExperimentalBadgeUtils
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
