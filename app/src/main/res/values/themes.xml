@@ -7,6 +7,15 @@
 
     <style name="Theme.ChoreChampion" parent="Base.Theme.ChoreChampion" />
 
+    <!-- Splash Screen Configuration Theme -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/navy_blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.ChoreChampion</item>
+    </style>
+
     <style name="CustomHintAppearance" parent="TextAppearance.Design.Hint">
         <item name="fontFamily">@font/macondo</item>
         <item name="android:fontFamily">@font/macondo</item>
