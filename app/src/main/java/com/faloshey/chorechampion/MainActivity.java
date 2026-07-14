@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
 
+        if (savedInstanceState != null) {
+            savedInstanceState.remove("android:support:fragments");
+            savedInstanceState.remove("androidx.lifecycle.BundlableSavedStateRegistryHolder.savedState");
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
